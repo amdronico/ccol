@@ -1,6 +1,33 @@
 
 	<nav id="sidebar" class="active">
-			<h1><a href="index.html" class="logo">M.</a></h1>
+			     <style>
+            .parent-div {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+        </style>
+        <style>
+            .image-container {
+              width: 100%; /* Ajusta el ancho del contenedor de la imagen */
+              padding: 0% 5%;
+            }
+            .image-container img {
+              width: 100%; /* Ajusta el ancho de la imagen dentro del contenedor */
+              height: auto; /* Asegura que la altura se ajuste proporcionalmente */
+            }
+          </style>
+
+         <div class="image-container">
+          <div class="parent-div">
+            <div class="child-div">
+                <a href="" class="logo"><img src="/assets/images/logo.png"></a>
+            
+          </div>
+          </div>
+          </div>
+        
+        
         <ul class="list-unstyled components mb-5">
           <li class="active">
             <a href="#"><span class="fa fa-home"></span> Home</a>
@@ -19,7 +46,6 @@
           </li>
         </ul>
         <div class="footer">
-        	<h1>Código QR</h1>
             <img src="{{ qrCodeDataURL }}" alt="Código QR">
         </div>
     </nav>
