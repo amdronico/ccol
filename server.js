@@ -8,6 +8,7 @@ const path = require('path');
 dotenv.config();
 
 const app = express();
+const qrcode = require('qrcode');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -15,7 +16,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
 app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
-
+app.use('/css', express.static(path.join(__dirname, 'public/assets/css')));
+app.use('/js', express.static(path.join(__dirname, 'public/assets/js')));
 
 // Configurar Nunjucks como motor de plantillas
 nunjucks.configure('views', {
