@@ -1,28 +1,10 @@
 
 	<nav id="sidebar" class="active">
-			     <style>
-            .parent-div {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-        </style>
-        <style>
-            .image-container {
-              width: 100%; /* Ajusta el ancho del contenedor de la imagen */
-              padding: 0% 5%;
-            }
-            .image-container img {
-              width: 100%; /* Ajusta el ancho de la imagen dentro del contenedor */
-              height: auto; /* Asegura que la altura se ajuste proporcionalmente */
-            }
-          </style>
 
          <div class="image-container">
           <div class="parent-div">
             <div class="child-div">
-                <a href="" class="logo"><img src="/assets/images/logo.png"></a>
-            
+                <a href="" class="logo"><img src="/assets/images/logo.png"></a> 
           </div>
           </div>
           </div>
@@ -45,7 +27,16 @@
             <a href="#"><span class="fa fa-paper-plane"></span> Contacts</a>
           </li>
         </ul>
+        <div class="image-container responsive-image">
+            <img src="{{ CodeQr }}" alt="Código QR" class="rounded-image" >
+        </div>
         <div class="footer">
-            <img src="{{ qrCodeDataURL }}" alt="Código QR">
+            <div class="contenedor-principal">
+                  <div  class="contenedor-secundario">
+                  <a>{{ IdUser }} </a>
+                  <br>
+                   <a>{{ UserLogin }} </a>
+                  </div>
+            </div>
         </div>
     </nav>
