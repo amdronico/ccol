@@ -8373,3 +8373,7 @@ a[data-toggle="collapse"] {
 .contenedor-secundario {
   text-align: center;
 }
+
+.icons{
+  padding: 10px;
+}
