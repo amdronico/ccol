@@ -8195,7 +8195,7 @@ h1, h2, h3, h4, h5,
   background-position: center center; }
 
 .navbar {
-  padding: 0px 0px;
+  padding: 10px 10px;
   background: #fff;
   border: none;
   border-radius: 0;
@@ -8317,6 +8317,7 @@ a[data-toggle="collapse"] {
 
 @media (max-width: 991.98px) {
   #sidebarCollapse span {
+
     display: none; } }
 
 .footer {
@@ -8361,7 +8362,7 @@ a[data-toggle="collapse"] {
 .responsive-image {
   max-width: 100%;
   max-height: 100%;
-  padding: 0% 13%;
+  padding: 0% 28%;
 }
 
 .contenedor-principal {
@@ -8376,4 +8377,13 @@ a[data-toggle="collapse"] {
 
 .icons{
   padding: 10px;
+  color: #022a39;
 }
+
+.footerqr {
+  padding: 10% 15%; }
+  @media (max-width: 991.98px) {
+ }
+ #sidebarCollapse{
+  padding: 1.2% 2%;
+ }

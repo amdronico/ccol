@@ -27,8 +27,16 @@
             <a href="#"><span class="fa fa-paper-plane"></span> Contacts</a>
           </li>
         </ul>
+        <div id="PopupQr" class="popup">
+          <div class="popup-content" style="border-radius: 10px;">
+            <span class="close">&times;</span>
+                <div class="image-container">
+              <img src="{{ CodeQr }}" alt="Código QR" class="rounded-image" >
+          </div>
+        </div>
+      </div>
         <div class="image-container responsive-image">
-            <img src="{{ CodeQr }}" alt="Código QR" class="rounded-image" >
+           <button id="ButtonQr" class="transparent-button"> <img src="{{ CodeQr }}" alt="Código QR" class="rounded-image" ></button>
         </div>
         <div class="footer">
             <div class="contenedor-principal">
