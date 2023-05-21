@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  aside {
+    background-color: #f4f4f4;
+    width: 200px;
+    padding: 10px;
+    float: left;
+  }
+  
+  aside ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  aside ul li {
+    margin-bottom: 10px;
+  }
+  
+  aside ul li a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  main {
+    margin-left: 220px;
+    padding: 20px;
+  }
+  
+  section {
+    margin-bottom: 30px;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .chart-container {
+    height: 400px;
+  }
+  

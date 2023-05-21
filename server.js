@@ -8,11 +8,11 @@ const path = require('path');
 dotenv.config();
 
 const app = express();
-const qrcode = require('qrcode');
-
+//Directorio principal
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Rutas a recursos
 app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
 app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 app.use('/images', express.static(path.join(__dirname, 'public/images')));

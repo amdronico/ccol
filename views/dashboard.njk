@@ -6,10 +6,25 @@
 		<div class="wrapper d-flex align-items-stretch">
 		   {% include 'menu.njk' %}
         <div id="content" class="p-4 p-md-5">
-       {% include 'toggle.njk' %}
-       
-          <h2 class="mb-4">Aqui van las secciones</h2>
-          
+         {% include 'toggle.njk' %}
+          <section>
+              <div class="row flex-wrap">
+                <div class="col-lg-4 col-md-6 col-sm-12 order-1">
+                    <div class="card mb-4">
+                      <div class="card-body">
+                        <div class="img-container">
+                          <img src="/assets/images/admin_users.png" alt="Imagen" class="img-fluid" style="width: 30%;">
+                        </div>
+                        <div class="text-container">
+                          <h2>Gestión de Usuario</h2>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  
+              </div>
+          </section>
         </div>
 	  </div>
 {% endblock %}

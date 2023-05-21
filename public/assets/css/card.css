@@ -1,0 +1,22 @@
+/* css usado para ajustar los div de tipo card*/
+.container {
+    overflow: auto;
+    align-items: center;
+  }
+
+  .img-fluid {
+    float: left;
+    margin-right: 10px;
+  }
+
+  .text-container {
+    text-align: center;
+  }
+  .img-container {
+    margin-right: 10px;
+  }
+
+  .img-container img {
+    display: block;
+    margin: 0 auto;
+  }
