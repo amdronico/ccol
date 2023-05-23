@@ -1,0 +1,15 @@
+<!-- Renderiza las card asociadas a la gestion logística -->
+{% for card in cards %}
+        <div class="col-lg-4 col-md-6 col-sm-12 order-1">
+            <button type="button" class="card mb-4 buttoncard">
+                <div class="card-body">
+                <div class="img-container">
+                    <img src="{{ card.image }}" alt="{{ card.title }}" class="img-fluid" style="width: 30%;">
+                </div>
+                <div class="text-container">
+                    <h2>{{ card.title }}</h2>
+                </div>
+                </div>
+            </button>
+        </div>
+{% endfor %}

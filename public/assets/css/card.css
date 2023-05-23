@@ -1,6 +1,6 @@
 /* css usado para ajustar los div de tipo card*/
 .container {
-    overflow: auto;
+    overflow: hidden; /*auto*/
     align-items: center;
   }
 
@@ -19,4 +19,7 @@
   .img-container img {
     display: block;
     margin: 0 auto;
+  }
+  .buttoncard{
+    width: 100%;
   }

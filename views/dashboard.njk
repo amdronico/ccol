@@ -1,3 +1,4 @@
+
 {% extends "layouts/base.njk" %}
 
 {% block title %}Dashboard{% endblock %}
@@ -9,20 +10,20 @@
          {% include 'toggle.njk' %}
           <section>
               <div class="row flex-wrap">
-                <div class="col-lg-4 col-md-6 col-sm-12 order-1">
-                    <div class="card mb-4">
-                      <div class="card-body">
-                        <div class="img-container">
-                          <img src="/assets/images/admin_users.png" alt="Imagen" class="img-fluid" style="width: 30%;">
+                {% for card in cards %}
+                    <div class="col-lg-4 col-md-6 col-sm-12 order-1">
+                        <button type="button" class="card mb-4 buttoncard">
+                            <div class="card-body">
+                            <div class="img-container">
+                                <img src="{{ card.image }}" alt="{{ card.title }}" class="img-fluid" style="width: 30%;">
+                            </div>
+                            <div class="text-container">
+                                <h3>{{ card.title }}</h3>
+                            </div>
+                            </div>
+                        </button>
                         </div>
-                        <div class="text-container">
-                          <h2>Gestión de Usuario</h2>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  
+                {% endfor %}
               </div>
           </section>
         </div>
