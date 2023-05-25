@@ -26,8 +26,9 @@ router.post('/login', (req, res) => {
 router.get('/dashboard', async (req, res) => {
   try {
     // Datos para el código QR
-    const IdUser="123456789"; 
+    const IdUser="123456789" 
     const UserLogin="Pepito Perez"
+    const Alerts=4
     // Genera el contenido para card
     const cards = [
       { image: '/assets/images/admin_users.png', title: 'Gestión de usuarios' },
@@ -43,7 +44,7 @@ router.get('/dashboard', async (req, res) => {
     // Generar el código QR
     const qrCodeDataURL = await qrcode.toDataURL(IdUser);
 
-    res.render('dashboard.njk', { CodeQr:qrCodeDataURL, UserLogin: UserLogin,IdUser: IdUser,cards});
+    res.render('dashboard.njk', { CodeQr:qrCodeDataURL, UserLogin: UserLogin,IdUser: IdUser,Alerts:Alerts,cards});
     
 
   } catch (error) {
