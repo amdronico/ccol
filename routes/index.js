@@ -45,7 +45,7 @@ router.get('/dashboard', async (req, res) => {
     const qrCodeDataURL = await qrcode.toDataURL(IdUser);
 
     res.render('dashboard.njk', { CodeQr:qrCodeDataURL, UserLogin: UserLogin,IdUser: IdUser,Alerts:Alerts,cards});
-    
+
 
   } catch (error) {
     res.status(500).send('Error al generar el código QR');
