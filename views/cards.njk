@@ -1,0 +1,14 @@
+ {% for card in cards %}
+    <div class="col-lg-4 col-md-6 col-sm-12 order-1">
+        <button type="button" class="card mb-4 buttoncard" id="cardButton" data-template="{{ card.template }}">
+            <div class="card-body">
+            <div class="img-container">
+                <img src="{{ card.image }}" alt="{{ card.title }}" class="img-fluid" style="width: 30%;">
+            </div>
+            <div class="text-container" data-title="{{ card.title }}">
+                <h3>{{ card.title }}</h3>
+            </div>
+            </div>
+        </button>
+        </div>
+{% endfor %}
