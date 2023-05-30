@@ -11,6 +11,7 @@ const app = express();
 //Directorio principal
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public/dashboard')));
 
 //Rutas a recursos
 app.use('/assets', express.static(path.join(__dirname, 'public/assets')));

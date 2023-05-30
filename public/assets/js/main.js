@@ -131,16 +131,16 @@ $('#setting').on('click', function() {
 	});
   });
 
-  //Función boton admin user
+
   $(document).ready(function() {
-	$('#cardButton').click(function() {
+	$('.buttoncard').click(function() {
 	  var templatePath = $(this).data('template'); // Obtener la ruta de la plantilla desde el atributo 'data-template'
-	  var title = $('#cardButton .text-container').data('title');
-	  console.log(title);
-      
+	  var title = $(this).find('.text-container').data('title');
+	  var route = $(this).data('route');
+  
 	  // Realizar una llamada AJAX a tu servidor Express para renderizar la plantilla
 	  $.ajax({
-		url: '/render-template',
+		url: route,
 		method: 'POST',
 		data: { template: templatePath },
 		success: function(response) {
