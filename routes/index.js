@@ -65,6 +65,17 @@ router.post('/adminuser', (req, res) => {
   // Luego, envía el HTML renderizado al cliente como respuesta
   res.render(templatePath,{ users });
 });
+
+router.post('/edituser', (req, res) => {
+  const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
+  const id = req.body.id;
+  const name = req.body.name;
+  const ocupation = req.body.ocupation;
+  //Renderizar plantilla
+  // Luego, envía el HTML renderizado al cliente como respuesta
+  res.render(templatePath,{ id:id, name:name,ocupation:ocupation});
+});
+
 //Abastecimiento
 router.post('/abastecimiento', (req, res) => {
   const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente

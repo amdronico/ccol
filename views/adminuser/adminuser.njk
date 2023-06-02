@@ -11,11 +11,11 @@
     <tbody>
       {% for user in users %}
       <tr>
-        <td>{{ user.id }}</td>
-        <td>{{ user.name }}</td>
-        <td>{{ user.ocupation }}</td>
+        <td class="id">{{ user.id }}</td>
+        <td class="name">{{ user.name }}</td>
+        <td class="ocupation">{{ user.ocupation }}</td>
         <td>
-          <a href="#" class="btn btn-secondary">Editar</a>
+          <button type="button" class="btn btn-secondary editarBtn" >Editar</button>
           <a href="#" class="btn btn-secondary">Agregar</a>
           <a href="#" class="btn btn-secondary">Borrar</a>
         </td>
@@ -24,6 +24,8 @@
     </tbody>
   </table>
 </div>
-
+<div id="editLightbox" class="lightbox">
+  <div class="lightbox-content" id="lightboxContent"></div>
+</div>
 
 

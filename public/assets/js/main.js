@@ -150,4 +150,47 @@ $('#setting').on('click', function() {
 	  });
 	});
   });
+
+
+  $(document).ready(function() {
+	$(document).on('click', '.editarBtn', function() {
+		var id = $(this).closest('tr').find('.id').text();
+		var name = $(this).closest('tr').find('.name').text();
+		var ocupation = $(this).closest('tr').find('.ocupation').text();
+	    var template = 'adminuser/edituser.njk';
+	  // Realizar una llamada AJAX para obtener los datos del usuario
+	  $.ajax({
+		url: '/edituser',
+		method: 'POST',
+		data: { id: id,name:name,ocupation:ocupation,template:template },
+		success: function(response) {
+		     // Agregar la plantilla renderizada al contenido del lightbox
+			 $('#lightboxContent').html(response);
+
+			 // Mostrar el lightbox
+			 $('#editLightbox').fadeIn();
+		},
+		error: function() {
+		  console.error('Error al obtener los datos del usuario');
+		}
+	  });
+	});
+	
+	$('#cancelarBtn').click(function() {
+	  $('#editLightbox').fadeOut();
+	});
+	
+	$('#guardarBtn').click(function() {
+	  var id = $('#id').val();
+	  var name = $('#name').val();
+	  var ocupation = $('#ocupation').val();
+	
+	  // Realizar las acciones necesarias con los datos actualizados
+	
+	  $('#editLightbox').fadeOut();
+	});
+  });
+  
+  
+
   
