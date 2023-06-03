@@ -1,0 +1,31 @@
+  <table id="tablaOrdenes">
+    <thead>
+      <tr>
+        <th>Número de Orden</th>
+        <th>Valor</th>
+        <th>Proveedor</th>
+        <th>Dirección</th>
+        <th>Cantidad de Artículos</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for orden in ordenes %}
+        <tr>
+          <td>{{ orden.numero }}</td>
+          <td>{{ orden.valor }}</td>
+          <td>{{ orden.proveedor }}</td>
+          <td>{{ orden.direccion }}</td>
+          <td>{{ orden.cantidad }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <script>
+    $(document).ready(function() {
+      $('#tablaOrdenes').DataTable({
+        language: {
+          url: "/js/dataTables.Spanish.json"
+        }
+      });
+    });
+  </script>

@@ -1,20 +1,5 @@
 $(document).ready(function() {
 
-    $('#backButton').click(function(e) {
-      e.preventDefault(); // Evitar que se realice la acción predeterminada del enlace
-      var previousTemplate = $(this).attr('href'); // Obtener la ruta de la plantilla anterior
-      
-      // Realizar la redirección
-      window.location.href = previousTemplate;
-    });
-    $('#nextButton').click(function(e) {
-        e.preventDefault(); // Evitar que se realice la acción predeterminada del enlace
-        var nextTemplate = $(this).attr('href'); // Obtener la ruta de la siguiente plantilla
-        
-        // Realizar la redirección
-        window.location.href = nextTemplate;
-      });
-
 //función acción login
 $('#loginButton').on('click', function(event) {
 event.preventDefault(); // Prevenir la acción predeterminada del formulario
@@ -131,26 +116,6 @@ $('#showAlert').on('click', function() {
 });
 });
 
-//llamado renderización cards
-$('.buttoncard').click(function() {
-    var templatePath = $(this).data('template'); // Obtener la ruta de la plantilla desde el atributo 'data-template'
-    var title = $(this).find('.text-container').data('title');
-    var route = $(this).data('route');
-    if (route==='/adminuser'){
-       var button = '<span class="icon"><i class="fa-solid fa-user-plus fa-2xl" style="color: #022a39;"></i></span>';
-    }
-    // Realizar una llamada AJAX a tu servidor Express para renderizar la plantilla
-    $.ajax({
-      url: route,
-      method: 'POST',
-      data: { template: templatePath },
-      success: function(response) {
-        $('#templateContainer').html(response);
-        $('#title').html(title);
-        $('#button').html(button);
-      }
-    });
-  });
 
  //Llamar lightbox editar 
 $(document).on('click', '.editarBtn', function() {
@@ -261,20 +226,23 @@ $(document).on('click', '.settinguser', function(){
     });
 
 //Cerrar Lightbox
-$(document).on('click', '.cancelarBtn', function() {
+ $(document).on('click', '.cancelarBtn', function() {
     var lightbox = $(this).closest('.lightbox'); // Encontrar el contenedor del lightbox
     lightbox.fadeOut(); // Ocultar el lightbox
   });
 
-//guardar info lightBox
-$(document).on('click', '.guardarBtn', function() {
-    var idInterno = $('#id').val();
-    var nombre = $('#name').val();
-    var cargo = $('#ocupation').val();
-    
-    // Realizar las acciones necesarias con los datos actualizados
+  //guardar info lightBox
+  $(document).on('click', '.guardarBtn', function() {
+      var idInterno = $('#id').val();
+      var nombre = $('#name').val();
+      var cargo = $('#ocupation').val();
+      
+      // Realizar las acciones necesarias con los datos actualizados
 
-    $('#editLightbox').fadeOut();
+      $('#editLightbox').fadeOut();
+  });
+
+
 });
 
-});
+

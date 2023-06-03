@@ -95,7 +95,7 @@ router.post('/abastecimiento', (req, res) => {
   const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
   //Renderizar plantilla
   const cards = [
-    { image: '/assets/images/ordencompra.png', title: 'Ordenes de compra', template:'ordencompra.njk', route:'/ordencompra'},
+    { image: '/assets/images/ordencompra.png', title: 'Ordenes de compra', template:'abastecimiento/proveedores.njk', route:'/proveedores'},
     { image: '/assets/images/ubicacionproducto.png', title: 'Ubicación de productos', template:'ubicacionproducto.njk',route:'/ubicacionproducto' },
     { image: '/assets/images/etiquetadoproducto.png', title: 'Etiquetado de productos', template:'etiquetadoproducto.njk', route:'/etiquetadoproducto'},
     { image: '/assets/images/reubicacionproducto.png', title: 'Reubicación de productos', template:'reubicacionproducto.njk',route:'/reubicacionproducto' }
@@ -104,6 +104,30 @@ router.post('/abastecimiento', (req, res) => {
   res.render(templatePath,{ cards });
 });
 
+router.post('/proveedores', (req, res) => {
+  const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
+  //Renderizar plantilla
+  const cards = [
+    { image: '/assets/images/proveedores/centelsa.png', title: 'Centelsa', template:'abastecimiento/ordendecompra.njk', route:'/ordendecompra'},
+    {image: '/assets/images/proveedores/condumex.png', title: 'Condumex', template:'', route:'/'},
+    {image: '/assets/images/proveedores/kubiec.png', title: 'Kubiec', template:'', route:'/'},
+    {image: '/assets/images/proveedores/nacobre.png', title: 'Nacobre', template:'', route:'/'}
+  ];
+  // Luego, envía el HTML renderizado al cliente como respuesta
+  res.render(templatePath,{ cards });
+});
+
+router.post('/ordendecompra', (req, res) => {
+  const templatePath = req.body.template;
+  const ordenes = [
+    { numero: 1, valor: 100, proveedor: 'Proveedor 1', direccion: 'Dirección 1', cantidad: 5 },
+    { numero: 2, valor: 200, proveedor: 'Proveedor 2', direccion: 'Dirección 2', cantidad: 3 },
+    // ... Agrega más órdenes de compra aquí ...
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7 }
+  ];
+
+  res.render(templatePath, { ordenes });
+});
 
 
 module.exports = router;

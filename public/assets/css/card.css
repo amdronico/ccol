@@ -24,3 +24,8 @@
   .buttoncard{
     width: 100%;
   }
+  .card-image {
+    max-width: 100%;
+    max-height: 50px; /* Ajusta el valor según las necesidades */
+    object-fit: contain;
+}
