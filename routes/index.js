@@ -71,13 +71,11 @@ router.post('/adminuser', (req, res) => {
 router.post('/adduser', (req, res) => {
   const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
   //Renderizar plantilla
-  const users = [
-    { name: ' ', ocupation:' ', id:' '}
-  ];
-  //const adduser='<div class="col icons adduser"><span class="icon"><i class="fa-solid fa-gears fa-2xl" style="color: #022a39;"></i></span></div>'
-  
+  var profile = ['Director/subdirector', 'Analista Logística', 'Asistente de pedidos','Asistente de transporte','Coordinador de bodega','Líder de bodega','Etiquetador',
+  'Fraccionador','Montacarguista','Embalador','Alianzas estratégicas'];
+
   // Luego, envía el HTML renderizado al cliente como respuesta
-  res.render(templatePath,{ users});
+  res.render(templatePath,{ profiles: profile});
 });
 //edit user
 router.post('/edituser', (req, res) => {

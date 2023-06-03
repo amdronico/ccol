@@ -18,6 +18,20 @@
 
 $(document).ready(function() {
 
+		$('#backButton').click(function(e) {
+		  e.preventDefault(); // Evitar que se realice la acción predeterminada del enlace
+		  var previousTemplate = $(this).attr('href'); // Obtener la ruta de la plantilla anterior
+		  
+		  // Realizar la redirección
+		  window.location.href = previousTemplate;
+		});
+		$('#nextButton').click(function(e) {
+			e.preventDefault(); // Evitar que se realice la acción predeterminada del enlace
+			var nextTemplate = $(this).attr('href'); // Obtener la ruta de la siguiente plantilla
+			
+			// Realizar la redirección
+			window.location.href = nextTemplate;
+		  });
 
 //función acción login
 $('#loginButton').on('click', function(event) {
@@ -180,46 +194,84 @@ $(document).ready(function() {
 	  });
 	});
 
-		 //Llamar lightbox adduser 
-		 $(document).on('click', '.adduser', function() {
-			var template = 'adminuser/adduser.njk';
-		  // Realizar una llamada AJAX para obtener los datos del usuario
-		  $.ajax({
-			url: '/adduser',
-			method: 'POST',
-			data: {template:template },
-			success: function(response) {
-				 // Agregar la plantilla renderizada al contenido del lightbox
-				 $('#lightboxContent').html(response);
-	
-				 // Mostrar el lightbox
-				 $('#editLightbox').fadeIn();
-			},
-			error: function() {
-			  console.error('Error al obtener los datos del usuario');
-			}
-		  });
-		});
+	//Llamar lightbox adduser 
+	$(document).on('click', '.adduser', function() {
+	var template = 'adminuser/adduser.njk';
+	// Realizar una llamada AJAX para obtener los datos del usuario
+	$.ajax({
+	url: '/adduser',
+	method: 'POST',
+	data: {template:template },
+	success: function(response) {
+			// Agregar la plantilla renderizada al contenido del lightbox
+			$('#lightboxContent').html(response);
+
+			// Mostrar el lightbox
+			$('#editLightbox').fadeIn();
+	},
+	error: function() {
+		console.error('Error al obtener los datos del usuario');
+	}
+	});
+});
 
 	//Llamar eliminar registro
 	$(document).on('click', '.settinguser', function(){
+		var id = $(this).closest('tr').find('.id').text();
+		var name = $(this).closest('tr').find('.name').text();
+		var ocupation = $(this).closest('tr').find('.ocupation').text();
+	    var template = 'adminuser/edituser.njk';
 		iziToast.show({
 			id: 'settingToast',
 			theme: 'dark',
 			icon: 'fa fa-cog',
 			title: 'Configuración',
-			message: 'Selecciona una opción para el usuario:',
+			message: 'Selecciona una opción para :'+ name,
 			position: 'center',
 			progressBarColor: '#022a39',
 			buttons: [
 			['<button><i class="fa-solid fa-pen-to-square"></i> Editar </button>', function(instance, toast) {
-				// Acción para el botón "Perfil"
-				// Agrega tu código aquí
+				// Acción para el botón "Editar"
+				$.ajax({
+					url: '/edituser',
+					method: 'POST',
+					data: { id: id,name:name,ocupation:ocupation,template:template },
+					success: function(response) {
+						 // Agregar la plantilla renderizada al contenido del lightbox
+						 $('#lightboxContent').html(response);
+			
+						 // Mostrar el lightbox
+						 $('#editLightbox').fadeIn();
+					},
+					error: function() {
+					  console.error('Error al obtener los datos del usuario');
+					}
+				  });
 				instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
 			}],
 			['<button><i class="fa-solid fa-trash"></i> Borrar </button>', function(instance, toast) {
-				// Acción para el botón "Contraseña"
-				// Agrega tu código aquí
+				// Acción para el botón "Borrar"
+				iziToast.question({
+					timeout: false,
+					close: false,
+					overlay: true,
+					displayMode: 'once',
+					id: 'confirm',
+					zindex: 999999999,
+					title: '¿Deseas eliminar el usuario?',
+					message: 'Si continúas, esta opción no puede revertirse.',
+					position: 'center',
+					buttons: [
+					  ['<button><b>Sí</b></button>', function(instance, toast) {
+						//Código acción eliminar usuario
+
+						instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+					  }, true],
+					  ['<button>No</button>', function(instance, toast) {
+						instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+					  }]
+					],
+				  });
 				instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
 			}]
 			]

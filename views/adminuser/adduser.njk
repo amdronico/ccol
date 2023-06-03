@@ -22,6 +22,17 @@
       </div>
     </div>
   </div>
+    <div class="col-lg-12">
+    <div class="form-group">
+        <label for="profile">Perfil:</label>
+        <select id="profile" name="profile" class="form-control">
+        {% for profile in profiles %}
+            <option value="{{ profile }}">{{ profile }}</option>
+        {% endfor %}
+        </select>
+    </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-lg-12 text-center">
       <div class="form-actions">
