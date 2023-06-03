@@ -8401,3 +8401,22 @@ a[data-toggle="collapse"] {
   position: relative;
   display: inline-block;
 }
+.btn-minimalistic {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.btn-minimalistic:focus {
+  outline: none;
+}
+
+.icon {
+  display: inline-block;
+}
+
+.icon i {
+  vertical-align: middle;
+}
+

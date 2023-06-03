@@ -62,10 +62,24 @@ router.post('/adminuser', (req, res) => {
     { name: 'Roxana Mateus', ocupation:'Colaborador', id:456744 },
     { name: 'Vivian Perlaza Cote',ocupation:'Asistente', id: 898654 }
   ];
+  //const adduser='<div class="col icons adduser"><span class="icon"><i class="fa-solid fa-gears fa-2xl" style="color: #022a39;"></i></span></div>'
+  
   // Luego, envía el HTML renderizado al cliente como respuesta
-  res.render(templatePath,{ users });
+  res.render(templatePath,{ users});
 });
-
+//add user
+router.post('/adduser', (req, res) => {
+  const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
+  //Renderizar plantilla
+  const users = [
+    { name: ' ', ocupation:' ', id:' '}
+  ];
+  //const adduser='<div class="col icons adduser"><span class="icon"><i class="fa-solid fa-gears fa-2xl" style="color: #022a39;"></i></span></div>'
+  
+  // Luego, envía el HTML renderizado al cliente como respuesta
+  res.render(templatePath,{ users});
+});
+//edit user
 router.post('/edituser', (req, res) => {
   const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
   const id = req.body.id;

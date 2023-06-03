@@ -140,7 +140,9 @@ $(document).ready(function() {
 		var templatePath = $(this).data('template'); // Obtener la ruta de la plantilla desde el atributo 'data-template'
 		var title = $(this).find('.text-container').data('title');
 		var route = $(this).data('route');
-	
+		if (route==='/adminuser'){
+           var button = '<span class="icon"><i class="fa-solid fa-user-plus fa-2xl" style="color: #022a39;"></i></span>';
+		}
 		// Realizar una llamada AJAX a tu servidor Express para renderizar la plantilla
 		$.ajax({
 		  url: route,
@@ -149,6 +151,7 @@ $(document).ready(function() {
 		  success: function(response) {
 			$('#templateContainer').html(response);
 			$('#title').html(title);
+			$('#button').html(button);
 		  }
 		});
 	  });
@@ -176,6 +179,52 @@ $(document).ready(function() {
 		}
 	  });
 	});
+
+		 //Llamar lightbox adduser 
+		 $(document).on('click', '.adduser', function() {
+			var template = 'adminuser/adduser.njk';
+		  // Realizar una llamada AJAX para obtener los datos del usuario
+		  $.ajax({
+			url: '/adduser',
+			method: 'POST',
+			data: {template:template },
+			success: function(response) {
+				 // Agregar la plantilla renderizada al contenido del lightbox
+				 $('#lightboxContent').html(response);
+	
+				 // Mostrar el lightbox
+				 $('#editLightbox').fadeIn();
+			},
+			error: function() {
+			  console.error('Error al obtener los datos del usuario');
+			}
+		  });
+		});
+
+	//Llamar eliminar registro
+	$(document).on('click', '.settinguser', function(){
+		iziToast.show({
+			id: 'settingToast',
+			theme: 'dark',
+			icon: 'fa fa-cog',
+			title: 'Configuración',
+			message: 'Selecciona una opción para el usuario:',
+			position: 'center',
+			progressBarColor: '#022a39',
+			buttons: [
+			['<button><i class="fa-solid fa-pen-to-square"></i> Editar </button>', function(instance, toast) {
+				// Acción para el botón "Perfil"
+				// Agrega tu código aquí
+				instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+			}],
+			['<button><i class="fa-solid fa-trash"></i> Borrar </button>', function(instance, toast) {
+				// Acción para el botón "Contraseña"
+				// Agrega tu código aquí
+				instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+			}]
+			]
+		});
+		});
 
 	//Cerrar Lightbox
 	$(document).on('click', '.cancelarBtn', function() {
