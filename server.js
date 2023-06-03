@@ -29,6 +29,7 @@ nunjucks.configure('views', {
 // Rutas
 app.use('/', routes);
 
+
 // Iniciar el servidor
 app.listen(process.env.PORT || 3000, () => {
   console.log(`Servidor iniciado en http://localhost:${process.env.PORT || 3000}`);

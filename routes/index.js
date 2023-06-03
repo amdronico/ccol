@@ -53,8 +53,9 @@ router.get('/dashboard', async (req, res) => {
     res.status(500).send('Error al generar el código QR');
   }
 });
+
  //admin user
-router.post('/adminuser', (req, res) => {
+ router.post('/adminuser', (req, res) => {
   const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
   //Renderizar plantilla
   const users = [
@@ -87,16 +88,17 @@ router.post('/edituser', (req, res) => {
   // Luego, envía el HTML renderizado al cliente como respuesta
   res.render(templatePath,{ id:id, name:name,ocupation:ocupation});
 });
+module.exports = router;
 
 //Abastecimiento
 router.post('/abastecimiento', (req, res) => {
   const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
   //Renderizar plantilla
   const cards = [
-    { image: '/assets/images/admin_users.png', title: 'Ordenes de compra', template:'ubicacionproducto.njk', route:'/ordencompra'},
-    { image: '/assets/images/abastecimiento.png', title: 'Ubicación de productos', template:'ubicacionproducto.njk',route:'/ubicacionproducto' },
-    { image: '/assets/images/admin_users.png', title: 'Etiquetado de productos', template:'etiquetadoproducto.njk', route:'/ordeetiquetadoproducto'},
-    { image: '/assets/images/abastecimiento.png', title: 'Reubicación de productos', template:'rubicacionproducto.njk',route:'/rubicacionproducto' }
+    { image: '/assets/images/ordencompra.png', title: 'Ordenes de compra', template:'ordencompra.njk', route:'/ordencompra'},
+    { image: '/assets/images/ubicacionproducto.png', title: 'Ubicación de productos', template:'ubicacionproducto.njk',route:'/ubicacionproducto' },
+    { image: '/assets/images/etiquetadoproducto.png', title: 'Etiquetado de productos', template:'etiquetadoproducto.njk', route:'/etiquetadoproducto'},
+    { image: '/assets/images/reubicacionproducto.png', title: 'Reubicación de productos', template:'reubicacionproducto.njk',route:'/reubicacionproducto' }
   ];
   // Luego, envía el HTML renderizado al cliente como respuesta
   res.render(templatePath,{ cards });
