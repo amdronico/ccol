@@ -1,7 +1,40 @@
+  <table id="tablaEtiquetas">
+    <thead>
+      <tr>
+        <th>Referencia</th>
+        <th>Descripción Item</th>
+        <th>Lote</th>
+        <th>Existencia</th>
+        <th>Unidad de Empaque</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for etiqueta in etiquetas %}
+        <tr>
+          <td>{{ etiqueta.referencia }}</td>
+          <td>{{ etiqueta.descripcion }}</td>
+          <td>{{ etiqueta.lote }}</td>
+          <td>{{ etiqueta.existencia }}</td>
+          <td>{{ etiqueta.unidad }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <!--<button id="imprimirBtn">Imprimir</button>-->
+  <script>
 $(document).ready(function() {
+    var tablaEtiquetas = $('#tablaEtiquetas').DataTable({
+      select: {
+        style: 'multi'
+      },
+      language: {
+            url: "/js/dataTables.Spanish.json"
+          },
+      pageLength: 6
+    });
 
     $('#imprimirBtn').on('click', function() {
-      var selectedRows = $('#tablaEtiquetas').DataTable().rows('.selected').data();
+      var selectedRows = tablaEtiquetas.rows({ selected: true }).data();
 
       if (selectedRows.length > 0) {
         iziToast.question({
@@ -32,3 +65,4 @@ $(document).ready(function() {
       }
     });
   });
+  </script>

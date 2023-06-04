@@ -8419,12 +8419,23 @@ a[data-toggle="collapse"] {
 .icon i {
   vertical-align: middle;
 }
+/*tablas*/
 #tablaOrdenes {
   font-size: 18px;
   color: black;
 }
 
 #tablaOrdenes td, #tablaOrdenes th {
+  font-size: 18px;
+  color: black;
+}
+
+#tablaEtiquetas {
+  font-size: 18px;
+  color: black;
+}
+
+#tablaEtiquetas td, #tablaEtiquetas th {
   font-size: 18px;
   color: black;
 }
