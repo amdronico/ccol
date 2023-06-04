@@ -6,6 +6,7 @@
         <th>Proveedor</th>
         <th>Dirección</th>
         <th>Cantidad de Artículos</th>
+        <th>Estado</th>
       </tr>
     </thead>
     <tbody>
@@ -16,6 +17,7 @@
           <td>{{ orden.proveedor }}</td>
           <td>{{ orden.direccion }}</td>
           <td>{{ orden.cantidad }}</td>
+          <td>{{ orden.estado }}</td>
         </tr>
       {% endfor %}
     </tbody>
@@ -25,7 +27,8 @@
       $('#tablaOrdenes').DataTable({
         language: {
           url: "/js/dataTables.Spanish.json"
-        }
+        },
+         pageLength: 6
       });
     });
   </script>

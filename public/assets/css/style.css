@@ -8419,4 +8419,12 @@ a[data-toggle="collapse"] {
 .icon i {
   vertical-align: middle;
 }
+#tablaOrdenes {
+  font-size: 18px;
+  color: black;
+}
 
+#tablaOrdenes td, #tablaOrdenes th {
+  font-size: 18px;
+  color: black;
+}

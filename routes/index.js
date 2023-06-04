@@ -109,9 +109,9 @@ router.post('/proveedores', (req, res) => {
   //Renderizar plantilla
   const cards = [
     { image: '/assets/images/proveedores/centelsa.png', title: 'Centelsa', template:'abastecimiento/ordendecompra.njk', route:'/ordendecompra'},
-    {image: '/assets/images/proveedores/condumex.png', title: 'Condumex', template:'', route:'/'},
-    {image: '/assets/images/proveedores/kubiec.png', title: 'Kubiec', template:'', route:'/'},
-    {image: '/assets/images/proveedores/nacobre.png', title: 'Nacobre', template:'', route:'/'}
+    {image: '/assets/images/proveedores/condumex.png', title: 'Condumex', template:'abastecimiento/ordendecompra.njk', route:'/ordendecompra'},
+    {image: '/assets/images/proveedores/kubiec.png', title: 'Kubiec', template:'abastecimiento/ordendecompra.njk', route:'/ordendecompra'},
+    {image: '/assets/images/proveedores/nacobre.png', title: 'Nacobre', template:'abastecimiento/ordendecompra.njk', route:'/ordendecompra'}
   ];
   // Luego, envía el HTML renderizado al cliente como respuesta
   res.render(templatePath,{ cards });
@@ -120,10 +120,16 @@ router.post('/proveedores', (req, res) => {
 router.post('/ordendecompra', (req, res) => {
   const templatePath = req.body.template;
   const ordenes = [
-    { numero: 1, valor: 100, proveedor: 'Proveedor 1', direccion: 'Dirección 1', cantidad: 5 },
-    { numero: 2, valor: 200, proveedor: 'Proveedor 2', direccion: 'Dirección 2', cantidad: 3 },
-    // ... Agrega más órdenes de compra aquí ...
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7 }
+    { numero: 1, valor: 100, proveedor: 'Proveedor 1', direccion: 'Dirección 1', cantidad: 5,estado: 'aprobada' },
+    { numero: 2, valor: 200, proveedor: 'Proveedor 2', direccion: 'Dirección 2', cantidad: 3,estado: 'anulada' },
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7 ,estado: 'aprobada'},
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7,estado: 'anulada' },
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7,estado: 'en elaboración' },
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7 ,estado: 'en elaboración'},
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7,estado: 'aprobada' },
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7 ,estado: 'aprobada'},
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7,estado: 'en elaboración' },
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7 ,estado: 'aprobada'},
   ];
 
   res.render(templatePath, { ordenes });
