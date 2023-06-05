@@ -1,4 +1,4 @@
-  <table id="tablaOrdenes">
+  <table id="tablaOrdenes" class="table table-striped" style="width:100%">
     <thead>
       <tr>
         <th>Número de Orden</th>
@@ -28,7 +28,12 @@
         language: {
           url: "/js/dataTables.Spanish.json"
         },
-         pageLength: 6
+        scrollY: '250px',
+        scrollCollapse: true,
+        paging: true,
+        responsive: true,
+        select: true,
+        pageLength: 6
       });
     });
   </script>
