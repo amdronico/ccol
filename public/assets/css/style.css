@@ -8439,3 +8439,20 @@ a[data-toggle="collapse"] {
   font-size: 18px;
   color: black;
 }
+.ordencompra{
+  width: inherit;
+}
+.modal-lg, .modal-xl {
+  max-width: 100%;
+}
+.modal-dialog {
+  max-width: 100%;
+}
+.table tbody tr.selected {
+  background-color: #ffc107!important; /* Cambia este valor por el color deseado */
+  color: #000!important; /* Cambia este valor por el color de texto deseado */
+}
+
+
+
+

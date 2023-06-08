@@ -1,0 +1,50 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content modal-lg">
+    <div class="modal-header">
+      <h5 class="modal-title text-center mx-auto">Productos de Orden de Compra {{ remisionId }} </h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+    </div>
+    <div class="modal-body">
+        <table id="tablaDetalle" class="table table-striped" style="width:100%">
+            <thead>
+            <tr>
+                <th>Referencia</th>
+                <th>Descripción Item</th>
+                <th>Lote</th>
+                <th>Existencia</th>
+                <th>Unidad de Empaque</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for detalle in detalles %}
+                <tr>
+                <td>{{ detalle.referencia }}</td>
+                <td>{{ detalle.descripcion }}</td>
+                <td>{{ detalle.lote }}</td>
+                <td>{{ detalle.existencia }}</td>
+                <td>{{ detalle.unidad }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+          <script>
+                $(document).ready(function() {
+                    var tablaEtiquetas = $('#tablaDetalle').DataTable({
+                    select: {
+                        style: 'multi'
+                    },
+                    language: {
+                            url: "/js/dataTables.Spanish.json"
+                        },
+                    pageLength: 6,
+                    scrollY: '250px',
+                    scrollCollapse: true,
+                    paging: true,
+                    responsive: true
+                    });
+
+                });
+          </script>
+    </div>
+  </div>
+</div>

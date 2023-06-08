@@ -120,19 +120,19 @@ router.post('/proveedores', (req, res) => {
 router.post('/ordendecompra', (req, res) => {
   const templatePath = req.body.template;
   const ordenes = [
-    { numero: 1, valor: 100, proveedor: 'Proveedor 1', direccion: 'Dirección 1', cantidad: 5, estado: 'aprobada' },
-    { numero: 2, valor: 200, proveedor: 'Proveedor 2', direccion: 'Dirección 2', cantidad: 3, estado: 'anulada' },
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'aprobada' },
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'anulada' },
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'en elaboración' },
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'en elaboración' },
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'aprobada' },
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'aprobada' },
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'en elaboración' },
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'aprobada' },
+    { numero: 1, valor: 100, proveedor: 'Proveedor 1', direccion: 'Dirección 1', cantidad: 5, estado: 'Aprobada' },
+    { numero: 2, valor: 200, proveedor: 'Proveedor 2', direccion: 'Dirección 2', cantidad: 3, estado: 'Anulada' },
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Anulada' },
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
   ];
 
-  res.render(templatePath, { ordenes });
+  res.render(templatePath, { ordenes});
 });
 
 //Etiquetado de producto
@@ -161,6 +161,25 @@ router.post('/etiquetaimprimir', (req, res) => {
   ];
   res.render(templatePath, { etiquetas });
 });
+
+//Detalle Orden de copra 
+router.post('/detalleorden', (req, res) => {
+  const remisionId = req.body.remisionId; 
+  const templatePath = req.body.template;// Obtener la ruta de la plantilla enviada desde el cliente
+  const detalles= [
+    { referencia: 'CAB-001', descripcion: 'Cable de red Cat 6', lote: '20210501', existencia: 100, unidad: 'metros' },
+    { referencia: 'CAB-002', descripcion: 'Cable HDMI 2.0', lote: '20210415', existencia: 50, unidad: 'metros' },
+    { referencia: 'CAB-003', descripcion: 'Cable USB Tipo C', lote: '20210610', existencia: 200, unidad: 'unidades' },
+    {referencia: 'CAB-004',descripcion: 'Cable de audio 3.5mm',lote: '20210522', existencia: 75,unidad: 'metros'},
+    {referencia: 'CAB-005',descripcion: 'Cable de alimentación PC',lote: '20210430',existencia: 30,unidad: 'metros'},
+    {referencia: 'CAB-006',descripcion: 'Cable VGA',lote: '20210605',existencia: 40,unidad: 'metros'},
+    {referencia: 'CAB-007',descripcion: 'Cable de carga para iPhone',lote: '20210318',existencia: 150,unidad: 'unidades'},
+
+  ];
+  // Luego, envía el HTML renderizado al cliente como respuesta
+  res.render(templatePath, { remisionId: remisionId,detalles });
+});
+
 
 
 module.exports = router;

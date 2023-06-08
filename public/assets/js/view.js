@@ -24,11 +24,14 @@ $(document).ready(function() {
     if (route==='/adminuser'){
        var button = '<span class="icon"><i class="fa-solid fa-user-plus fa-2xl" style="color: #022a39;"></i></span>';
     }
+    if (route==='/ordendecompra'){
+      var title = 'Orden de Compra ' + $(this).find('.text-container').data('title');
+   }
     // Realizar una llamada AJAX al servidor Express para renderizar la plantilla
     $.ajax({
       url: route,
       method: 'POST',
-      data: { template: templatePath },
+      data: { template: templatePath},
       success: function(response) {
         $('#templateContainer').html(response);
         $('#title').html(title);
