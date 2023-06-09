@@ -8447,11 +8447,10 @@ a[data-toggle="collapse"] {
 }
 .modal-dialog {
   max-width: 100%;
+  margin: 0%;
+
 }
-.table tbody tr.selected {
-  background-color: #ffc107!important; /* Cambia este valor por el color deseado */
-  color: #000!important; /* Cambia este valor por el color de texto deseado */
-}
+
 
 
 

@@ -167,19 +167,18 @@ router.post('/detalleorden', (req, res) => {
   const remisionId = req.body.remisionId; 
   const templatePath = req.body.template;// Obtener la ruta de la plantilla enviada desde el cliente
   const detalles= [
-    { referencia: 'CAB-001', descripcion: 'Cable de red Cat 6', lote: '20210501', existencia: 100, unidad: 'metros' },
-    { referencia: 'CAB-002', descripcion: 'Cable HDMI 2.0', lote: '20210415', existencia: 50, unidad: 'metros' },
-    { referencia: 'CAB-003', descripcion: 'Cable USB Tipo C', lote: '20210610', existencia: 200, unidad: 'unidades' },
-    {referencia: 'CAB-004',descripcion: 'Cable de audio 3.5mm',lote: '20210522', existencia: 75,unidad: 'metros'},
-    {referencia: 'CAB-005',descripcion: 'Cable de alimentación PC',lote: '20210430',existencia: 30,unidad: 'metros'},
-    {referencia: 'CAB-006',descripcion: 'Cable VGA',lote: '20210605',existencia: 40,unidad: 'metros'},
-    {referencia: 'CAB-007',descripcion: 'Cable de carga para iPhone',lote: '20210318',existencia: 150,unidad: 'unidades'},
+    { referencia: 'CAB-001', descripcion: 'Cable de red Cat 6',unidad: 'metros', solicitada:'25',recibida:' ',pendiente:'25' },
+    { referencia: 'CAB-002', descripcion: 'Cable HDMI 2.0', unidad: 'metros', solicitada:'45',recibida:' ',pendiente:'45' },
+    { referencia: 'CAB-003', descripcion: 'Cable USB Tipo C',unidad: 'metros', solicitada:'2',recibida:' ',pendiente:'2' },
+    {referencia: 'CAB-004',descripcion: 'Cable de audio 3.5mm',unidad: 'metros', solicitada:'3',recibida:' ',pendiente:'3'},
+    {referencia: 'CAB-005',descripcion: 'Cable de alimentación PC',unidad: 'metros', solicitada:'67',recibida:' ',pendiente:'67'},
+    {referencia: 'CAB-006',descripcion: 'Cable VGA',unidad: 'metros', solicitada:'5',recibida:' ',pendiente:'5'},
+    {referencia: 'CAB-007',descripcion: 'Cable de carga para iPhone',unidad: 'metros', solicitada:'89',recibida:' ',pendiente:'89'},
 
   ];
   // Luego, envía el HTML renderizado al cliente como respuesta
   res.render(templatePath, { remisionId: remisionId,detalles });
 });
-
 
 
 module.exports = router;
