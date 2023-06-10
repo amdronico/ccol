@@ -15,7 +15,7 @@
             <th>Descripción</th>
             <th>Unidad de Empaque</th>
             <th>Cant. Solicitada</th>
-            <th>Cant. Recibida</th>
+            <th>Cant. a Recibir</th>
             <th>Cant. Pendiente</th>
           </tr>
         </thead>
@@ -112,7 +112,10 @@
           ['<button><b>Sí</b></button>', function(instance, toast) {
             instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
 
+            // Cerrar la ventana modal
+            $('.lightbox').hide();
             // Validar las cantidades pendientes
+            
             var cantidadesPendientes = [];
             $('#tablaDetalle tbody tr').each(function() {
               var pendiente = parseFloat($(this).find('.editable').data('pendiente'));
@@ -130,12 +133,13 @@
                 position: 'topCenter'
               });
 
-            }else{
-                iziToast.success({
+            } else {
+              iziToast.success({
                 title: 'Aviso',
-                message: 'El abastecimiento se envío de forma correcta.',
+                message: 'El abastecimiento se envió correctamente.',
                 position: 'topCenter'
               });
+
             }
 
             // Realizar las acciones necesarias para enviar el abastecimiento

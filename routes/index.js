@@ -129,7 +129,7 @@ router.post('/ordendecompra', (req, res) => {
     { numero: 200055, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
     { numero: 200034, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
     { numero: 200093, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
-    { numero: 200001, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200052, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
   ];
 
   res.render(templatePath, { ordenes});
@@ -167,13 +167,13 @@ router.post('/detalleorden', (req, res) => {
   const remisionId = req.body.remisionId; 
   const templatePath = req.body.template;// Obtener la ruta de la plantilla enviada desde el cliente
   const detalles= [
-    { referencia: 'CAB-001', descripcion: 'Cable de red Cat 6',unidad: 'metros', solicitada:'25',recibida:' ',pendiente:'25' },
-    { referencia: 'CAB-002', descripcion: 'Cable HDMI 2.0', unidad: 'metros', solicitada:'45',recibida:' ',pendiente:'45' },
-    { referencia: 'CAB-003', descripcion: 'Cable USB Tipo C',unidad: 'metros', solicitada:'2',recibida:' ',pendiente:'2' },
-    {referencia: 'CAB-004',descripcion: 'Cable de audio 3.5mm',unidad: 'metros', solicitada:'3',recibida:' ',pendiente:'3'},
-    {referencia: 'CAB-005',descripcion: 'Cable de alimentación PC',unidad: 'metros', solicitada:'67',recibida:' ',pendiente:'67'},
-    {referencia: 'CAB-006',descripcion: 'Cable VGA',unidad: 'metros', solicitada:'5',recibida:' ',pendiente:'5'},
-    {referencia: 'CAB-007',descripcion: 'Cable de carga para iPhone',unidad: 'metros', solicitada:'89',recibida:' ',pendiente:'89'},
+    { referencia: 'CAB-001', descripcion: 'Cable de red Cat 6',unidad: 'metros', solicitada:'25',recibida:'0',pendiente:'20' },
+    { referencia: 'CAB-002', descripcion: 'Cable HDMI 2.0', unidad: 'metros', solicitada:'45',recibida:'0',pendiente:'4' },
+    { referencia: 'CAB-003', descripcion: 'Cable USB Tipo C',unidad: 'metros', solicitada:'2',recibida:'0',pendiente:'2'},
+    {referencia: 'CAB-004',descripcion: 'Cable de audio 3.5mm',unidad: 'metros', solicitada:'3',recibida:'0',pendiente:'3'},
+    {referencia: 'CAB-005',descripcion: 'Cable de alimentación PC',unidad: 'metros', solicitada:'67',recibida:'0',pendiente:'1'},
+    {referencia: 'CAB-006',descripcion: 'Cable VGA',unidad: 'metros', solicitada:'5',recibida:'0',pendiente:'5'},
+    {referencia: 'CAB-007',descripcion: 'Cable de carga para iPhone',unidad: 'metros', solicitada:'89',recibida:'0',pendiente:'80'},
 
   ];
   // Luego, envía el HTML renderizado al cliente como respuesta
