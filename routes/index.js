@@ -120,16 +120,16 @@ router.post('/proveedores', (req, res) => {
 router.post('/ordendecompra', (req, res) => {
   const templatePath = req.body.template;
   const ordenes = [
-    { numero: 1, valor: 100, proveedor: 'Proveedor 1', direccion: 'Dirección 1', cantidad: 5, estado: 'Aprobada' },
-    { numero: 2, valor: 200, proveedor: 'Proveedor 2', direccion: 'Dirección 2', cantidad: 3, estado: 'Anulada' },
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Anulada' },
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
-    { numero: 20, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200056, valor: 100, proveedor: 'Proveedor 1', direccion: 'Dirección 1', cantidad: 5, estado: 'Aprobada' },
+    { numero: 200057, valor: 200, proveedor: 'Proveedor 2', direccion: 'Dirección 2', cantidad: 3, estado: 'Anulada' },
+    { numero: 200080, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200089, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Anulada' },
+    { numero: 200068, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 200034, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 200055, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200034, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200093, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 200001, valor: 150, proveedor: 'Proveedor 20', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
   ];
 
   res.render(templatePath, { ordenes});
