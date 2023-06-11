@@ -134,34 +134,6 @@ router.post('/ordendecompra', (req, res) => {
 
   res.render(templatePath, { ordenes});
 });
-
-//Etiquetado de producto
-router.post('/etiquetadoproducto', (req, res) => {
-  const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
-  //Renderizar plantilla
-  const cards = [
-    { image: '/assets/images/abastecimiento/etiquetadoproduto/imprimiretiqueta.png', title: 'Imprimir Etiqueta', template: 'abastecimiento/etiquetaimprimir.njk', route: '/etiquetaimprimir' },
-    { image: '/assets/images/abastecimiento/etiquetadoproduto/etiquetarproduto.png', title: 'Etiquetar producto', template: '', route: '' }
-  ];
-  // Luego, envía el HTML renderizado al cliente como respuesta
-  res.render(templatePath, { cards });
-});
-//Listado etiquetas que se van a imprimir
-router.post('/etiquetaimprimir', (req, res) => {
-  const templatePath = req.body.template;
-  const etiquetas = [
-    { referencia: 'CAB-001', descripcion: 'Cable de red Cat 6', lote: '20210501', existencia: 100, unidad: 'metros' },
-    { referencia: 'CAB-002', descripcion: 'Cable HDMI 2.0', lote: '20210415', existencia: 50, unidad: 'metros' },
-    { referencia: 'CAB-003', descripcion: 'Cable USB Tipo C', lote: '20210610', existencia: 200, unidad: 'unidades' },
-    {referencia: 'CAB-004',descripcion: 'Cable de audio 3.5mm',lote: '20210522', existencia: 75,unidad: 'metros'},
-    {referencia: 'CAB-005',descripcion: 'Cable de alimentación PC',lote: '20210430',existencia: 30,unidad: 'metros'},
-    {referencia: 'CAB-006',descripcion: 'Cable VGA',lote: '20210605',existencia: 40,unidad: 'metros'},
-    {referencia: 'CAB-007',descripcion: 'Cable de carga para iPhone',lote: '20210318',existencia: 150,unidad: 'unidades'},
-
-  ];
-  res.render(templatePath, { etiquetas });
-});
-
 //Detalle Orden de copra 
 router.post('/detalleorden', (req, res) => {
   const remisionId = req.body.remisionId; 
@@ -179,6 +151,39 @@ router.post('/detalleorden', (req, res) => {
   // Luego, envía el HTML renderizado al cliente como respuesta
   res.render(templatePath, { remisionId: remisionId,detalles });
 });
+
+//Etiquetado de producto
+router.post('/etiquetadoproducto', (req, res) => {
+  const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
+  //Renderizar plantilla
+  const cards = [
+    { image: '/assets/images/abastecimiento/etiquetadoproduto/imprimiretiqueta.png', title: 'Imprimir Etiqueta', template: 'abastecimiento/etiquetaimprimir.njk', route: '/etiquetaimprimir' },
+    { image: '/assets/images/abastecimiento/etiquetadoproduto/etiquetarproduto.png', title: 'Etiquetar producto', template: '', route: '' }
+  ];
+  // Luego, envía el HTML renderizado al cliente como respuesta
+  res.render(templatePath, { cards });
+});
+
+//Listado ordenes de compra a las que se les va a generar una una etiqueta
+router.post('/etiquetaimprimir', (req, res) => {
+  const templatePath = req.body.template;
+  const ordenes = [
+    { numero: 200056, valor: 100, proveedor: 'Centelsa', direccion: 'Dirección 1', cantidad: 5, estado: 'Aprobada' },
+    { numero: 200057, valor: 200, proveedor: 'Centelsa', direccion: 'Dirección 2', cantidad: 3, estado: 'Anulada' },
+    { numero: 200080, valor: 150, proveedor: 'Centelsa', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200089, valor: 150, proveedor: 'Centelsa', direccion: 'Dirección 20', cantidad: 7, estado: 'Anulada' },
+    { numero: 200068, valor: 150, proveedor: 'Centelsa', direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 200034, valor: 150, proveedor: 'Centelsa', direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 200055, valor: 150, proveedor: 'Centelsa', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200034, valor: 150, proveedor: 'Centelsa', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200093, valor: 150, proveedor: 'Centelsa', direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 200052, valor: 150, proveedor: 'Centelsa', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+  ];
+
+  res.render(templatePath, { ordenes});
+});
+
+
 
 
 module.exports = router;

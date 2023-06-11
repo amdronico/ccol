@@ -8376,7 +8376,7 @@ a[data-toggle="collapse"] {
 }
 
 .icons{
-  padding: 10px;
+  /*padding: 10px;*/  /*Paddin de los iconos*/
   color: #022a39;
 }
 
