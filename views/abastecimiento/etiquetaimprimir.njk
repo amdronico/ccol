@@ -24,6 +24,10 @@
     {% endfor %}
   </tbody>
 </table>
+  <div id="editLightbox" class="lightbox">
+    <div class="lightbox-content ordencompra" id="lightboxContent"></div>
+  </div>
+
 <script>
    $(document).ready(function() {
       // Inicializar DataTables con la extensión Select
@@ -78,23 +82,22 @@
          // Asignar evento de clic al botón cuando tenga la clase mostrarArticulos
         $(document).on('click', '.mostrarArticulos', function() {
           // Obtener las órdenes seleccionadas
+          var template = 'abastecimiento/detalleetiqueta.njk';
           var ordenesSeleccionadas = [];
           $('#tablaOrdenes tbody tr.selected').each(function() {
             var numeroOrden = $(this).find('td:first').text(); // Obtener el número de orden de la primera columna
             ordenesSeleccionadas.push(numeroOrden);
           });
-
-          console.log("clic con clase mostrarArticulos");
-
             // Enviar las órdenes seleccionadas al servidor mediante AJAX
             $.ajax({
-              url: '/enviar-ordenes',
+              url: '/detallesetiquetas',
               type: 'POST',
-              data: { ordenes: ordenesSeleccionadas },
+              data: { ordenes: ordenesSeleccionadas,template: template  },
               success: function(response) {
                 // Manejar la respuesta del servidor en caso de éxito
-                console.log('Órdenes enviadas exitosamente');
-              },
+                      $('#lightboxContent').html(response);
+                      $('#editLightbox').fadeIn();
+               },
               error: function(error) {
                 // Manejar el error en caso de fallo en la solicitud AJAX
                 console.error('Error al enviar las órdenes:', error);

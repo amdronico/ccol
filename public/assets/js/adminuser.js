@@ -145,21 +145,21 @@ $(document).on('click', '.editarBtn', function() {
 $(document).on('click', '.adduser', function() {
 var template = 'adminuser/adduser.njk';
 // Realizar una llamada AJAX para obtener los datos del usuario
-    $.ajax({
-    url: '/adduser',
-    method: 'POST',
-    data: {template:template },
-    success: function(response) {
-            // Agregar la plantilla renderizada al contenido del lightbox
-            $('#lightboxContent').html(response);
+  $.ajax({
+  url: '/adduser',
+  method: 'POST',
+  data: {template:template },
+  success: function(response) {
+          // Agregar la plantilla renderizada al contenido del lightbox
+          $('#lightboxContent').html(response);
 
-            // Mostrar el lightbox
-            $('#editLightbox').fadeIn();
-    },
-      error: function() {
-          console.error('Error al obtener los datos del usuario');
-      }
-    });
+          // Mostrar el lightbox
+          $('#editLightbox').fadeIn();
+  },
+    error: function() {
+        console.error('Error al obtener los datos del usuario');
+    }
+  });
 });
 
 //Llamar eliminar registro

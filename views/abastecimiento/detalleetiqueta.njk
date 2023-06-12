@@ -1,0 +1,115 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content modal-lg">
+    <div class="modal-header">
+      <h5 class="modal-title text-center mx-auto">Productos de Orden(es) de Compra(s) seleccionada(s)</h5>
+      <div class="form-actions">
+        <button type="button" class="btn btn-primary crearEtiqueta">Crear Etiqueta</button>
+        <button type="button" class="btn btn-secondary cancelarBtn">Cancelar</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <table id="tablaDetalle" class="table table-striped" style="width:100%">
+        <thead>
+          <tr>
+            <th>Referencia</th>
+            <th>Descripción</th>
+            <th>Unidad de Empaque</th>
+            <th>Cant. Solicitada</th>
+            <th>Seleccionar</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for detalle in detalles %}
+          <tr>
+            <td>{{ detalle.referencia }}</td>
+            <td>{{ detalle.descripcion }}</td>
+            <td>{{ detalle.unidad }}</td>
+            <td>{{ detalle.solicitada }}</td>
+            <td><input type="checkbox" class="select-checkbox"></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+    var tablaEtiquetas = $('#tablaDetalle').DataTable({
+      language: {
+        url: "/js/dataTables.Spanish.json"
+      },
+      pageLength: 6,
+      scrollY: '250px',
+      scrollCollapse: true,
+      paging: true,
+      responsive: true
+    });
+
+    // Manejar el evento de cambio en los checkboxes de selección
+    $('#tablaDetalle tbody').on('change', '.select-checkbox', function() {
+      var $row = $(this).closest('tr'); // Obtener la fila más cercana al checkbox
+      $row.toggleClass('selected'); // Agregar o quitar la clase de selección en la fila seleccionada
+      actualizarBotonEnviar();
+    });
+        // Manejar el evento de selección de una fila al hacer clic en cualquier parte de la misma
+    $('#tablaDetalle tbody').on('click', 'tr', function() {
+      var $checkbox = $(this).find('.select-checkbox');
+      $checkbox.prop('checked', !$checkbox.prop('checked')).trigger('change'); // Cambiar el estado del checkbox y disparar el evento de cambio
+    });
+
+    // Función para actualizar el estado del botón "Enviar Abastecimiento" según la selección de filas
+    function actualizarBotonEnviar() {
+      var filasSeleccionadas = $('#tablaDetalle tbody tr.selected');
+
+      if (filasSeleccionadas.length > 0) {
+        $('.crearEtiqueta').prop('disabled', false);
+      } else {
+        $('.crearEtiqueta').prop('disabled', true);
+      }
+    }
+
+    // Manejar el evento de clic en el botón "Crear Etiqueta"
+    $('.crearEtiqueta').on('click', function() {
+      var filasSeleccionadas = $('#tablaDetalle tbody tr.selected');
+
+      if (filasSeleccionadas.length > 0) {
+        // Mostrar la confirmación de tipo utilizando iziToast
+        iziToast.question({
+          timeout: false,
+          close: false,
+          overlay: true,
+          displayMode: 'once',
+          id: 'tipoEtiqueta',
+          title: 'Selecciona el tipo de etiqueta:',
+          message: '¿Deseas crear una etiqueta de tipo "Estiba" o "Carrete"?',
+          position: 'center',
+          buttons: [
+            ['<button><b>Estiba</b></button>', function(instance, toast) {
+              instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+              // Lógica para crear etiqueta de tipo "Estiba"
+              crearEtiqueta('Estiba');
+            }],
+            ['<button><b>Carrete</b></button>', function(instance, toast) {
+              instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+              // Lógica para crear etiqueta de tipo "Carrete"
+              crearEtiqueta('Carrete');
+            }],
+            ['<button>Cancelar</button>', function(instance, toast) {
+              instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+              // Lógica para cancelar la creación de etiqueta
+              console.log('Creación de etiqueta cancelada');
+            }]
+          ]
+        });
+      }
+    });
+    // Función para crear la etiqueta según el tipo seleccionado
+      function crearEtiqueta(tipo) {
+        if (tipo === 'Estiba') {
+          
+  
+      }
+    }
+  });
+</script>
