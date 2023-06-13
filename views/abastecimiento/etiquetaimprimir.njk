@@ -97,6 +97,8 @@
                 // Manejar la respuesta del servidor en caso de éxito
                       $('#lightboxContent').html(response);
                       $('#editLightbox').fadeIn();
+                      //se coloca la clase orden de compra para mostrar el lightBox rectangular
+                      $('#lightboxContent').addClass('ordencompra');
                },
               error: function(error) {
                 // Manejar el error en caso de fallo en la solicitud AJAX

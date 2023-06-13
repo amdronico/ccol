@@ -106,8 +106,33 @@
     });
     // Función para crear la etiqueta según el tipo seleccionado
       function crearEtiqueta(tipo) {
+        //Ruta generación d eetiqueta
+        var template = 'abastecimiento/etiqueta.njk';
+        var productosSelecionados = [];
+        //Tomar la filas seleccionadas [referencias de los productos]
+          $('#tablaDetalle tbody tr.selected').each(function() {
+            var producto = $(this).find('td:first').text(); // Obtener el número de orden de la primera columna
+            productosSelecionados.push(producto);
+          });
         if (tipo === 'Estiba') {
-          
+            const tipo='Estiba Mixta'
+            // Hacer la solicitud para renderizado de la etiqueta generada
+            $.ajax({
+              url: '/etiqueta',
+              type: 'POST',
+              data: { template: template,tipo:tipo,productos: productosSelecionados },
+              success: function(response) {
+                // Manejar la respuesta del servidor en caso de éxito
+                      $('#lightboxContent').html(response);
+                      $('#editLightbox').fadeIn();
+                      //se quita la clase orden de compra para mostrar el lightBox cuadrado
+                      $('#lightboxContent').removeClass('ordencompra');
+               },
+              error: function(error) {
+                // Manejar el error en caso de fallo en la solicitud AJAX
+                console.error('Error al solicitar la etiqueta:', error);
+              }
+            });
   
       }
     }

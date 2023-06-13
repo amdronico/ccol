@@ -8448,7 +8448,13 @@ a[data-toggle="collapse"] {
 .modal-dialog {
   max-width: 100%;
   margin: 0%;
-
+}
+.qr-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #000;
+  margin-bottom: 20px;
 }
 
 
