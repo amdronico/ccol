@@ -15,25 +15,30 @@
                 <div class="d-flex justify-content-center align-items-center" style="height: 35px;">
                   <div class="row">
                     <div class="col-lg-2" style="padding-left: 0px; padding-right: 0px; text-align: center;">
-                      <div style="width: 50px; height: 50px; border-radius: 50%; background-color: green; transform: scale(0.6);"></div>
+                      <div style="width: 50px; height: 50px; border-radius: 50%; border: 4px solid {% if color == 'green' %}green{% else %}transparent{% endif %}; background-color: {% if color == 'green' %}green{% else %}transparent{% endif %}; transform: scale(0.6); display: flex; justify-content: center; align-items: center;">
+                        <span style="color: {% if color == 'green' %}white{% else %}green{% endif %}; font-weight: bold;">G</span>
+                      </div>
                     </div>
                     <div class="col-lg-2" style="padding-left: 0px; padding-right: 0px; text-align: center;">
-                      <div style="width: 50px; height: 50px; border-radius: 50%; background-color: red; transform: scale(0.6);"></div>
+                      <div style="width: 50px; height: 50px; border-radius: 50%; border: 4px solid {% if color == 'red' %}red{% else %}transparent{% endif %}; background-color: {% if color == 'red' %}red{% else %}transparent{% endif %}; transform: scale(0.6); display: flex; justify-content: center; align-items: center;">
+                        <span style="color: {% if color == 'red' %}white{% else %}red{% endif %}; font-weight: bold;">R</span>
+                      </div>
                     </div>
                     <div class="col-lg-2 " style="padding-left: 0px; padding-right: 0px; text-align: center;">
-                      <div style="width: 50px; height: 50px; border-radius: 50%; background-color: black; transform: scale(0.6);"></div>
+                      <div style="width: 50px; height: 50px; border-radius: 50%; border: 4px solid {% if color == 'black' %}black{% else %}transparent{% endif %}; background-color: {% if color == 'black' %}black{% else %}transparent{% endif %}; transform: scale(0.6); display: flex; justify-content: center; align-items: center;">
+                        <span style="color: {% if color == 'black' %}white{% else %}black{% endif %}; font-weight: bold;">B</span>
+                      </div>
                     </div>
-                   <div class="col-lg-2" style="padding-left: 0px; padding-right: 0px; text-align: center;">
-                        <div class="col-lg-2">
+                   <div class="col-lg-2" style="padding-left: 0px; padding-right: 0px; text-align: center; margin-top: 13px;">
+                        <div class="col-lg-2 bodyetiqueta">
                             U.E:R100
                         </div> 
                     </div>
                   </div>
-
                 </div>
               </div>
             <div class="row" style="padding-left: 26px;">
-              <div class="col-lg-12" >
+              <div class="col-lg-12 " >
                     Proveedor: Indumex
                 </div>
             </div>
@@ -52,6 +57,9 @@
     </div>
   </div>
 </form>
+
+
+
 
 
 

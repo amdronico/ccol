@@ -204,12 +204,15 @@ router.post('/etiqueta', async (req, res) => {
   const templatePath = req.body.template;// Obtener la ruta de la plantilla enviada desde el cliente
   const tipo = req.body.tipo;
   const IdEtiqueta='Etiqueta';
+  //const color='black';
+  const color='red';
+  //const color='green';
    // Generar el código QR de la etiqueta
    try {
     // Generar el código QR
     const qrCodeDataURL = await qrcode.toDataURL(IdEtiqueta);
     // Luego, envía el HTML renderizado al cliente como respuesta
-   res.render(templatePath,{CodeQr: qrCodeDataURL,tipo});
+   res.render(templatePath,{CodeQr: qrCodeDataURL,tipo,color});
   } catch (error) {
     res.status(500).send('Error al generar el código QR');
   }
