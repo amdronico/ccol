@@ -25,6 +25,7 @@ $(document).ready(function() {
     if (route==='/adminuser'){
        var button = '<span class="icon"><i class="fa-solid fa-user-plus fa-2xl"></i></span>';
     }
+    //si es imprimir se crea el icono imprimir
     if (route==='/etiquetaimprimir'){
       var button = '<span class="icon"><i class="fa-solid fa-print fa-2xl" style="color: #022a3933;"></i></span>';
     }

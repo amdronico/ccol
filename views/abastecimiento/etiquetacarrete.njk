@@ -1,0 +1,63 @@
+<h4 class="text-center">Etiqueta {{tipo}}</h4>
+<form>
+  <div style="position: relative;">
+    <div class="row qr-container">
+      <div class="col-lg-4" style="padding: 6px;">
+        <img src="{{ CodeQr }}" alt="Código QR" class="rounded-image">
+      </div>
+      <div class="col-lg-8" style="padding: 0px; width: 230px;">
+        <div class="principal">
+          <div>
+            <div class="bodyetiqueta">{{texto1}}</div>
+              <div class="container" style="padding-left: 11px;">
+                <div class="d-flex justify-content-center align-items-center" style="height: 35px;">
+                  <div class="row">
+                    <div class="col-lg-2" style="padding-left: 0px; padding-right: 0px; text-align: center;">
+                      <div style="width: 50px; height: 50px; border-radius: 50%; border: 4px solid {{color}}; background-color: {{color}} ; transform: scale(0.6); display: flex; justify-content: center; align-items: center;">
+                        <span style="color: white; font-weight: bold;">{{letracolor}}</span>
+                      </div>
+                    </div>
+                   <div class="col-lg-4 bodyetiqueta" style="text-align: center; margin-top: 13px;">
+                            U.E:{{eutipo}}
+                    </div>
+                     <div class="col-lg-6 bodyetiqueta" style=" padding-right: 0px; text-align: center; margin-top: 13px;">
+                            {{cant}} {{media}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <div class="row bodyetiquetacarrete" style="padding-left: 26px;">
+                <div class="col-lg-7 " style="padding-right: 0px; padding-left: 10px;" >
+                      Peso: {{peso}} {{medidapeso}} 
+                </div>
+                <div class="col-lg-5 " style="padding-left: 0px;" >
+                      L: {{lote}}
+                </div>
+            </div>
+              <div class="row " style="padding-left: 20px;">
+              <div class="col-lg-12 " style="color: #000;" >
+                    Proveedor: {{proveedor}}
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="background-image" style="background-image: url('/assets/images/logoccol.png'); background-size: 7%; background-repeat: repeat; position: absolute; top: 0; left: 8px; right: 8px; bottom: 0; z-index: -1; opacity: .3;"></div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <div class="form-actions">
+        <button type="button" class="btn btn-primary imprimirBtn">Imprimir</button>
+        <button type="button" class="btn btn-secondary cerrarBtn">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+
+
+
+

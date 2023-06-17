@@ -204,20 +204,39 @@ router.post('/etiqueta', async (req, res) => {
   const templatePath = req.body.template;// Obtener la ruta de la plantilla enviada desde el cliente
   const tipo = req.body.tipo;
   const IdEtiqueta='Etiqueta';
+  if(tipo==1){
+    var titulo='Estiba';
+    var texto1 = 'A.12AWG CU VER 100TH-NN2' ;
+    var texto2 = 'A.12AWG CU ROJ 100TH-NN2';
+    var texto3 = 'A.12AWG CU NEG 100TH-NN2';
+    var eutipo = 'R100';
+  }else{
+    var titulo='Empaque Carrete';
+    var texto1 = 'A.12AWG CU VER 100TH-NN2' ;
+    var letracolor = 'V' //letra en función del color
+    var eutipo = 'LOTE';
+    var cant = '300';
+    var media = 'Mts.'
+    var peso = '300'
+    var medidapeso = 'Kgs.'
+    var lote = '123456'
+    
+  }
+  var proveedor = 'Condumex';
+  // se debe enviar el color que se desee representar completamente en el circulo
   //const color='black';
-  const color='red';
-  //const color='green';
+  //const color='red';
+  const color='green';
+  
    // Generar el código QR de la etiqueta
    try {
     // Generar el código QR
     const qrCodeDataURL = await qrcode.toDataURL(IdEtiqueta);
     // Luego, envía el HTML renderizado al cliente como respuesta
-   res.render(templatePath,{CodeQr: qrCodeDataURL,tipo,color});
+   res.render(templatePath,{CodeQr: qrCodeDataURL,titulo,color,texto1,texto2,texto3,eutipo,proveedor,cant,media,peso,medidapeso,lote,letracolor});
   } catch (error) {
     res.status(500).send('Error al generar el código QR');
   }
-
-
 });
 
 

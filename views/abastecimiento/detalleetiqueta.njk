@@ -106,8 +106,6 @@
     });
     // Función para crear la etiqueta según el tipo seleccionado
       function crearEtiqueta(tipo) {
-        //Ruta generación d eetiqueta
-        var template = 'abastecimiento/etiqueta.njk';
         var productosSelecionados = [];
         //Tomar la filas seleccionadas [referencias de los productos]
           $('#tablaDetalle tbody tr.selected').each(function() {
@@ -115,8 +113,15 @@
             productosSelecionados.push(producto);
           });
         if (tipo === 'Estiba') {
-            const tipo='Estiba Mixta'
-            // Hacer la solicitud para renderizado de la etiqueta generada
+            var tipo=1
+            //Ruta generación de etiqueta
+            var template = 'abastecimiento/etiquetaestiba.njk';
+         }else{
+            var tipo=2
+            //Ruta generación de etiqueta
+            var template = 'abastecimiento/etiquetacarrete.njk';
+         }
+         // Hacer la solicitud para renderizado de la etiqueta generada
             $.ajax({
               url: '/etiqueta',
               type: 'POST',
@@ -133,8 +138,6 @@
                 console.error('Error al solicitar la etiqueta:', error);
               }
             });
-  
-      }
     }
   });
 </script>
