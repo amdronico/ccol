@@ -36,7 +36,7 @@ router.get('/dashboard', async (req, res) => {
     const cards = [
       { image: '/assets/images/admin_users.png', title: 'Gestión de usuarios', template: 'adminuser/adminuser.njk', route: '/adminuser' },
       { image: '/assets/images/abastecimiento.png', title: 'Abastecimiento', template: 'cards/cards.njk', route: '/abastecimiento' },
-      { image: '/assets/images/cortesproducto.png', title: 'Cortes de producto', template: 'cortesproducto.njk', route: '/cortesproducto' },
+      { image: '/assets/images/cortesproducto.png', title: 'Cortes de producto', template: 'cards/cards.njk', route: '/cortesproducto' },
       { image: '/assets/images/asignacionremisiones.png', title: 'Asignación de remisiones', template: 'asigancionremision.njk', route: '/asigancionremision' },
       { image: '/assets/images/montacargas.png', title: 'Montacargas', template: 'montacargas.njk', route: '/montacargas' },
       { image: '/assets/images/tramitepedidos.png', title: 'Trámite de pedidos', template: 'tramitepedidos.njk', route: '/tramitepedidos' },
@@ -237,6 +237,33 @@ router.post('/etiqueta', async (req, res) => {
   } catch (error) {
     res.status(500).send('Error al generar el código QR');
   }
+});
+
+//Cortes de producto
+router.post('/cortesproducto', (req, res) => {
+  const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
+  //Renderizar plantilla
+  const cards = [
+    { image: '/assets/images/cortesproducto/cortarproducto.png', title: 'Cortar Producto', template: 'cortesproducto/cortarproducto.njk', route: '/cortarproducto' },
+    { image: '/assets/images/cortesproducto/listarcortes.png', title: 'Listar Cortes', template: 'cortesproducto/listarcortes.njk', route: '/listarcortes' }
+  ];
+  // Luego, envía el HTML renderizado al cliente como respuesta
+  res.render(templatePath, { cards });
+});
+
+//Listado de cortes a realizar
+router.post('/listarcortes', (req, res) => {
+  const templatePath = req.body.template;
+  const estados =[
+    'Pendiente','En curso','Realizado'
+  ]
+
+  const cortes = [
+    { numero: 200056, proveedor: 'Centelsa',  cantidad: 5, medida: 'Metros', estadocorte: 'Pendiente'},
+    { numero: 200057, proveedor: 'Centelsa',  cantidad: 5, medida: 'Metros', estadocorte: 'Pendiente'}
+  ];
+
+  res.render(templatePath, { cortes,estados});
 });
 
 
