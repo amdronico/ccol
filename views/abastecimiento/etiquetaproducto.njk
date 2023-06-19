@@ -1,0 +1,65 @@
+<table id="tablaEstibas" class="table table-striped" style="width:100%">
+  <thead>
+    <tr>
+      <th>Cód. Estiba</th>
+      <th>UE:</th>
+      <th>Proveedor</th>
+      <th>Ver</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for estiba in estibas %}
+      <tr>
+        <td>{{ estiba.estiba }}</td>
+        <td>{{ estiba.ue }}</td>
+        <td>{{ estiba.proveedor }}</td>
+        <td><i class="view-icon fas fa-eye" data-estiba="{{ estiba.estiba }}"></i></td> 
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+  <div id="editLightbox" class="lightbox">
+    <div class="lightbox-content ordencompra" id="lightboxContent"></div>
+  </div>
+  <script>
+    $(document).ready(function() {
+      // Inicializar DataTables con la extensión Select
+      var tablaOrdenes = $('#tablaEstibas').DataTable({
+          select: {
+              style: 'single'
+          },
+          language: {
+                  url: "/js/dataTables.Spanish.json"
+              },
+          pageLength: 6,
+          scrollY: '250px',
+          scrollCollapse: true,
+          paging: true,
+          responsive: true
+      });
+        // Manejar el evento de selección de una fila
+      $('#tablaEstibas tbody').on('click', 'i.view-icon', function() {
+        var $row = $(this).closest('tr'); // Obtener la fila más cercana al icono de visualización
+        var estibaId = $(this).data('estiba');
+        var template = 'abastecimiento/detalleestiba.njk';
+        $.ajax({
+          url: '/detalleestiba',
+          type: 'POST',
+          data: { estibaId: estibaId, template: template },
+          success: function(response) {
+            $('#lightboxContent').html(response);
+            $('#editLightbox').fadeIn();
+
+            // Remover la clase de selección de todas las filas excepto la seleccionada
+            $row.siblings().removeClass('selected');
+
+            // Agregar o quitar la clase de selección en la fila seleccionada
+            $row.toggleClass('selected');
+          },
+          error: function(error) {
+            console.error('Error al obtener el detalle de la estiba:', error);
+          }
+        });
+      });
+    });
+  </script>

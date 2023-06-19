@@ -1,0 +1,48 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content modal-lg">
+    <div class="modal-header">
+      <h5 class="modal-title text-center mx-auto">Productos de estiba {{ estibaId }} </h5>
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary cancelarBtn">Cerrar</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <table id="tablaDetalle" class="table table-striped" style="width:100%">
+        <thead>
+          <tr>
+            <th>Referencia</th>
+            <th>Descripción</th>
+            <th>Unidad de Empaque</th>
+            <th>Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for detalle in detalles %}
+          <tr>
+            <td>{{ detalle.referencia }}</td>
+            <td>{{ detalle.descripcion }}</td>
+            <td>{{ detalle.unidad }}</td>
+            <td>{{ detalle.cantidad }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var tablaEtiquetas = $('#tablaDetalle').DataTable({
+      language: {
+        url: "/js/dataTables.Spanish.json"
+      },
+      pageLength: 6,
+      scrollY: '250px',
+      scrollCollapse: true,
+      paging: true,
+      responsive: true
+    });
+  });
+</script>
+

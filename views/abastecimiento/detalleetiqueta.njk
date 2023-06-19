@@ -145,7 +145,7 @@
                   $('#loader').hide();
                 }
               });
-          }, 3000);  // Quitar en producción
+          }, 500);  // Quitar en producción
       }
       //Cerra ventana emergente 
       $(document).on('click', '.cerrarBtn', function() {
@@ -156,7 +156,12 @@
       $(document).on('click', '.imprimirBtn', function() {
         var lightbox = $(this).closest('.lightbox'); // Encontrar el contenedor del lightbox
         lightbox.fadeOut(); // Ocultar el lightbox
-
+         //alerta para eviso de envío a impresión
+         iziToast.success({
+                title: 'Aviso',
+                message: 'La solicitud de impresión se realizó correctamente.',
+                position: 'topCenter'
+              });
         /*Código para imprimir etiqueta*/
       });
   });
