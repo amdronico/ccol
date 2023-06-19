@@ -1,4 +1,5 @@
 
+
 //Función de acción sidebar
 (function($) {
 	"use strict";
@@ -16,6 +17,7 @@
 })(jQuery);
 
 $(document).ready(function() {
+  
 //Llamado renderización cards
   $('body').on('click', '.buttoncard', function() {
     var templatePath = $(this).data('template'); // Obtener la ruta de la plantilla desde el atributo 'data-template'

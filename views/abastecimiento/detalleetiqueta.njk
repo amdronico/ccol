@@ -105,7 +105,9 @@
       }
     });
     // Función para crear la etiqueta según el tipo seleccionado
-      function crearEtiqueta(tipo) {
+    function crearEtiqueta(tipo) {
+        //Mostrar el Cargando
+        $('#loader').show()
         var productosSelecionados = [];
         //Tomar la filas seleccionadas [referencias de los productos]
           $('#tablaDetalle tbody tr.selected').each(function() {
@@ -121,23 +123,41 @@
             //Ruta generación de etiqueta
             var template = 'abastecimiento/etiquetacarrete.njk';
          }
-         // Hacer la solicitud para renderizado de la etiqueta generada
-            $.ajax({
-              url: '/etiqueta',
-              type: 'POST',
-              data: { template: template,tipo:tipo,productos: productosSelecionados },
-              success: function(response) {
-                // Manejar la respuesta del servidor en caso de éxito
-                      $('#lightboxContent').html(response);
-                      $('#editLightbox').fadeIn();
-                      //se quita la clase orden de compra para mostrar el lightBox cuadrado
-                      $('#lightboxContent').removeClass('ordencompra');
-               },
-              error: function(error) {
-                // Manejar el error en caso de fallo en la solicitud AJAX
-                console.error('Error al solicitar la etiqueta:', error);
-              }
-            });
-    }
+        
+          setTimeout(function() { //Timeout sólo para mabiente de desarrollo [prueba de cargando]
+                    // Hacer la solicitud para renderizado de la etiqueta generada
+              $.ajax({
+                url: '/etiqueta',
+                type: 'POST',
+                data: { template: template,tipo:tipo,productos: productosSelecionados },
+                success: function(response) {
+                  // Manejar la respuesta del servidor en caso de éxito
+                        $('#lightboxContent').html(response);
+                        $('#editLightbox').fadeIn();
+                        //se quita la clase orden de compra para mostrar el lightBox cuadrado
+                        $('#lightboxContent').removeClass('ordencompra');
+                        //Ocultar Cargando
+                        $('#loader').hide();
+                },
+                error: function(error) {
+                  // Manejar el error en caso de fallo en la solicitud AJAX
+                  console.error('Error al solicitar la etiqueta:', error);
+                  $('#loader').hide();
+                }
+              });
+          }, 3000);  // Quitar en producción
+      }
+      //Cerra ventana emergente 
+      $(document).on('click', '.cerrarBtn', function() {
+        var lightbox = $(this).closest('.lightbox'); // Encontrar el contenedor del lightbox
+        lightbox.fadeOut(); // Ocultar el lightbox
+      });
+      //Acción imprimir etiqueta
+      $(document).on('click', '.imprimirBtn', function() {
+        var lightbox = $(this).closest('.lightbox'); // Encontrar el contenedor del lightbox
+        lightbox.fadeOut(); // Ocultar el lightbox
+
+        /*Código para imprimir etiqueta*/
+      });
   });
 </script>
