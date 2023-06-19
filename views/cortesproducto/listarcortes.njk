@@ -44,6 +44,7 @@
 
   // Manejar el evento de cambio en los dropdown de estado de corte
   $('#listarCortes tbody').on('change', '.estadoCorte', function() {
+    $('#loader').show();
     var corteId = $(this).data('corte-id');
     var estadoSeleccionado = $(this).val();
 
@@ -52,7 +53,8 @@
 
     // Simulación de solicitud AJAX exitosa
     setTimeout(function() { //Quitar en producción
-      // Mostrar Toastr de actualización exitosa
+      // Mostrar iziToast de actualización exitosa
+      $('#loader').hide();
       iziToast.success({
           position: 'topCenter',
           title: 'Actualización Exitosa',
