@@ -13,7 +13,8 @@
           <tr>
             <th>Referencia</th>
             <th>Descripción</th>
-            <th>Unidad de Empaque</th>
+            <th>Unidad de Emp. Solicitada</th>
+            <th>Unidad de Emp. Recibida</th>
             <th>Cant. Solicitada</th>
             <th>Cant. a Recibir</th>
             <th>Cant. Pendiente</th>
@@ -25,6 +26,13 @@
             <td>{{ detalle.referencia }}</td>
             <td>{{ detalle.descripcion }}</td>
             <td>{{ detalle.unidad }}</td>
+            <td>
+              <select class="form-control unidadEmpaque">
+              {% for opcion in opcionesUnidadEmpaque %}
+                <option value="{{ opcion.value }}">{{ opcion.label }}</option>
+              {% endfor %}
+              </select>
+            </td>
             <td>{{ detalle.solicitada }}</td>
             <td>
               <input type="number" class="editable form-control" data-pendiente="{{ detalle.pendiente }}" value="{{ detalle.recibida }}">
@@ -154,4 +162,3 @@
     });
   });
 </script>
-

@@ -138,6 +138,12 @@ router.post('/ordendecompra', (req, res) => {
 router.post('/detalleorden', (req, res) => {
   const remisionId = req.body.remisionId; 
   const templatePath = req.body.template;// Obtener la ruta de la plantilla enviada desde el cliente
+  const opcionesUnidadEmpaque  = [
+   {value:'1',label:'Seleccionar'},
+   {value:'2',label:'Incorrecta'},
+   {value:'3',label:'Correcta'}
+  ]
+  
   const detalles= [
     { referencia: 'CAB-001', descripcion: 'Cable de red Cat 6',unidad: 'metros', solicitada:'25',recibida:'0',pendiente:'20' },
     { referencia: 'CAB-002', descripcion: 'Cable HDMI 2.0', unidad: 'metros', solicitada:'45',recibida:'0',pendiente:'4' },
@@ -149,7 +155,7 @@ router.post('/detalleorden', (req, res) => {
 
   ];
   // Luego, envía el HTML renderizado al cliente como respuesta
-  res.render(templatePath, { remisionId: remisionId,detalles });
+  res.render(templatePath, { remisionId: remisionId,detalles,opcionesUnidadEmpaque });
 });
 
 //Etiquetado de producto
