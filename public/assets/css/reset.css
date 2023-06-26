@@ -1,0 +1,23 @@
+/* Reset de estilos */
+
+/* Establece el valor inicial de los elementos */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, ol, li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+  }
+  
+  /* Reestablece las propiedades de lista */
+  ul, ol {
+    list-style: none;
+  }
+  
+  /* Otros estilos de reset comunes */
+  /* ... */
+  
+  /* Estilos adicionales para tu sitio web */
+  /* ... */
+  
