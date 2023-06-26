@@ -172,18 +172,15 @@ router.post('/etiquetadoproducto', (req, res) => {
 });
 
 //Mostrar lista con los  proveedores habilitados.
-
 router.post('/listaproveedores', (req, res) => {
   const templatePath = req.body.template;
-  const title = req.body.title;
-  const route =  req.body.route;
   const proveedores = [
     { id: 12345, proveedor: 'Condumex', direccion: 'Dirección 1', estado: 'Vigente' },
     { id: 12345, proveedor: 'Centelsa', direccion: 'Dirección 1', estado: 'Vigente' },
     { id: 12345, proveedor: 'Kubiec', direccion: 'Dirección 1', estado: 'Vigente' }
   ];
 
-  res.render(templatePath, { proveedores,route:route,title});
+  res.render(templatePath, { proveedores});
 });
 
 //Listado ordenes de compra a las que se les va a generar una una etiqueta
