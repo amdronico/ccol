@@ -176,8 +176,8 @@ router.post('/listaproveedores', (req, res) => {
   const templatePath = req.body.template;
   const proveedores = [
     { id: 12345, proveedor: 'Condumex', direccion: 'Dirección 1', estado: 'Vigente' },
-    { id: 12345, proveedor: 'Centelsa', direccion: 'Dirección 1', estado: 'Vigente' },
-    { id: 12345, proveedor: 'Kubiec', direccion: 'Dirección 1', estado: 'Vigente' }
+    { id: 44567, proveedor: 'Centelsa', direccion: 'Dirección 1', estado: 'Vigente' },
+    { id: 23556, proveedor: 'Kubiec', direccion: 'Dirección 1', estado: 'Vigente' }
   ];
 
   res.render(templatePath, { proveedores});
@@ -186,18 +186,18 @@ router.post('/listaproveedores', (req, res) => {
 //Listado ordenes de compra a las que se les va a generar una una etiqueta
 router.post('/etiquetaimprimir', (req, res) => {
   const templatePath = req.body.template;
-  const nomProveedor = req.body.nomProveedor;
+  const proveedor = req.body.proveedor;
   const ordenes = [
-    { numero: 200056, valor: 100, proveedor: nomProveedor, direccion: 'Dirección 1', cantidad: 5, estado: 'Aprobada' },
-    { numero: 200057, valor: 200, proveedor: nomProveedor, direccion: 'Dirección 2', cantidad: 3, estado: 'Anulada' },
-    { numero: 200080, valor: 150, proveedor: nomProveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
-    { numero: 200089, valor: 150, proveedor: nomProveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'Anulada' },
-    { numero: 200068, valor: 150, proveedor: nomProveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
-    { numero: 200034, valor: 150, proveedor: nomProveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
-    { numero: 200055, valor: 150, proveedor: nomProveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
-    { numero: 200034, valor: 150, proveedor: nomProveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
-    { numero: 200093, valor: 150, proveedor: nomProveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
-    { numero: 200052, valor: 150, proveedor: nomProveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200056, valor: 100, proveedor: proveedor, direccion: 'Dirección 1', cantidad: 5, estado: 'Aprobada' },
+    { numero: 200057, valor: 200, proveedor: proveedor, direccion: 'Dirección 2', cantidad: 3, estado: 'Anulada' },
+    { numero: 200080, valor: 150, proveedor: proveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200089, valor: 150, proveedor: proveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'Anulada' },
+    { numero: 200068, valor: 150, proveedor: proveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 200034, valor: 150, proveedor: proveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 200055, valor: 150, proveedor: proveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200034, valor: 150, proveedor: proveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200093, valor: 150, proveedor: proveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 200052, valor: 150, proveedor: proveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
   ];
 
   res.render(templatePath, { ordenes});
