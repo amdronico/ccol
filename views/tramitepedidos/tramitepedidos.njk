@@ -1,0 +1,50 @@
+<table id="listarPedidos" class="table table-striped" style="width:100%">
+  <thead>
+    <tr>
+      <th>Orden Pedido</th>
+      <th>Cliente</th>
+      <th>Fecha</th>
+      <th>Estado de Orden</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for ordenpedido in ordenpedidos %}
+      <tr>
+        <td>{{ ordenpedido.ordenpedido }}</td>
+        <td>{{ ordenpedido.cliente }}</td>
+        <td>{{ ordenpedido.fecha }}</td>
+        <td>
+          <select class="form-control estadoPedido" data-pedido-id="{{ ordenpedido.ordenpedido }}">
+            {% for estado in estados %}
+              <option value="{{ estado }}">{{ estado }}</option>
+            {% endfor %}
+          </select>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<script>
+  $(document).ready(function() {
+  var tablaOrdenes = $('#listarPedidos').DataTable({
+    select: {
+      style: 'single'
+    },
+    language: {
+      url: "/js/dataTables.Spanish.json"
+    },
+    pageLength: 6,
+    scrollY: '250px',
+    scrollCollapse: true,
+    paging: true,
+    responsive: true
+  });
+
+  // Manejar el evento de cambio en los dropdown de estado de corte
+  $('#listarPedidos tbody').on('change', '.estadoPedido', function() {
+    var pedidoId = $(this).data('pedido-id');
+    var estadoSeleccionado = $(this).val();
+    console.log('estadoSeleccionado :'+estadoSeleccionado);
+  });
+});
+</script>

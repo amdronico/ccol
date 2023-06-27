@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 
 // Ruta para manejar la solicitud de inicio de sesión
 router.post('/login', (req, res) => {
-  // Obtén los datos del formulario de inicio de sesión desde req.body
+  // Datos del formulario de inicio de sesión desde req.body
   const { username, password } = req.body;
 
   // Llama a la función login en tu controlador, pasando los datos necesarios
@@ -39,7 +39,7 @@ router.get('/dashboard', async (req, res) => {
       { image: '/assets/images/cortesproducto.png', title: 'Cortes de producto', template: 'cards/cards.njk', route: '/cortesproducto' },
       { image: '/assets/images/asignacionremisiones.png', title: 'Asignación de remisiones', template: 'asigancionremision.njk', route: '/asigancionremision' },
       { image: '/assets/images/montacargas.png', title: 'Montacargas', template: 'montacargas.njk', route: '/montacargas' },
-      { image: '/assets/images/tramitepedidos.png', title: 'Trámite de pedidos', template: 'tramitepedidos.njk', route: '/tramitepedidos' },
+      { image: '/assets/images/tramitepedidos.png', title: 'Trámite de pedidos', template: 'tramitepedidos/tramitepedidos.njk', route: '/tramitepedidos' },
       { image: '/assets/images/embalaje.png', title: 'Embalaje', template: 'embalaje.njk', route: '/embalaje' },
       { image: '/assets/images/liquidacion.png', title: 'Liquidación', template: 'liquidacion.njk', route: '/liquidacion' },
       { image: '/assets/images/estadisticas.png', title: 'Estadísticas', template: 'estadisticas.njk', route: '/estadisticas' }
@@ -188,16 +188,16 @@ router.post('/etiquetaimprimir', (req, res) => {
   const templatePath = req.body.template;
   const proveedor = req.body.proveedor;
   const ordenes = [
-    { numero: 200056, valor: 100, proveedor: proveedor, direccion: 'Dirección 1', cantidad: 5, estado: 'Aprobada' },
-    { numero: 200057, valor: 200, proveedor: proveedor, direccion: 'Dirección 2', cantidad: 3, estado: 'Anulada' },
-    { numero: 200080, valor: 150, proveedor: proveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
-    { numero: 200089, valor: 150, proveedor: proveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'Anulada' },
-    { numero: 200068, valor: 150, proveedor: proveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
-    { numero: 200034, valor: 150, proveedor: proveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
-    { numero: 200055, valor: 150, proveedor: proveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
-    { numero: 200034, valor: 150, proveedor: proveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
-    { numero: 200093, valor: 150, proveedor: proveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
-    { numero: 200052, valor: 150, proveedor: proveedor, direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200056, valor: 100, proveedor: 'Centelsa', direccion: 'Dirección 1', cantidad: 5, estado: 'Aprobada' },
+    { numero: 200057, valor: 200, proveedor: 'Centelsa', direccion: 'Dirección 2', cantidad: 3, estado: 'Anulada' },
+    { numero: 200080, valor: 150, proveedor: 'Centelsa', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200089, valor: 150, proveedor: 'Centelsa', direccion: 'Dirección 20', cantidad: 7, estado: 'Anulada' },
+    { numero: 200068, valor: 150, proveedor: 'Centelsa', direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 200034, valor: 150, proveedor: 'Centelsa', direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 200055, valor: 150, proveedor: 'Centelsa', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200034, valor: 150, proveedor: 'Centelsa', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200093, valor: 150, proveedor: 'Centelsa', direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 200052, valor: 150, proveedor: 'Centelsa', direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
   ];
 
   res.render(templatePath, { ordenes});
@@ -318,6 +318,19 @@ router.post('/listarcortes', (req, res) => {
 
   res.render(templatePath, { cortes,estados});
 });
+
+//Trámite de pedidos
+router.post('/tramitepedidos', (req, res) => {
+  const templatePath = req.body.template;
+  const estados =[
+    'Pendiente','En curso','Realizado'
+  ]
+  const ordenpedidos = [
+    { ordenpedido: 200056, cliente: 'Sergio Ávila Azcona',  fecha: '22/02/2023', estadoorden: 'Pendiente'}
+  ];
+  res.render(templatePath, { ordenpedidos,estados});
+});
+
 
 
 
