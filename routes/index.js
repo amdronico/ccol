@@ -37,7 +37,7 @@ router.get('/dashboard', async (req, res) => {
       { image: '/assets/images/admin_users.png', title: 'Gestión de usuarios', template: 'adminuser/adminuser.njk', route: '/adminuser' },
       { image: '/assets/images/abastecimiento.png', title: 'Abastecimiento', template: 'cards/cards.njk', route: '/abastecimiento' },
       { image: '/assets/images/cortesproducto.png', title: 'Cortes de producto', template: 'cards/cards.njk', route: '/cortesproducto' },
-      { image: '/assets/images/asignacionremisiones.png', title: 'Asignación de remisiones', template: 'asigancionremision.njk', route: '/asigancionremision' },
+      { image: '/assets/images/asignacionremisiones.png', title: 'Asignación de remisiones', template: 'asigancionremision/asigancionremision.njk', route: '/asigancionremision' },
       { image: '/assets/images/montacargas.png', title: 'Montacargas', template: 'montacargas.njk', route: '/montacargas' },
       { image: '/assets/images/tramitepedidos.png', title: 'Trámite de pedidos', template: 'tramitepedidos/tramitepedidos.njk', route: '/tramitepedidos' },
       { image: '/assets/images/embalaje.png', title: 'Embalaje', template: 'embalaje.njk', route: '/embalaje' },
@@ -326,12 +326,23 @@ router.post('/tramitepedidos', (req, res) => {
     'Pendiente','En curso','Realizado'
   ]
   const ordenpedidos = [
-    { ordenpedido: 200056, cliente: 'Sergio Ávila Azcona',  fecha: '22/02/2023', estadoorden: 'Pendiente'}
+    { ordenpedido: 200056, cliente: 'Sergio Ávila Azcona',  fecha: '22/02/2023',fechaprocesamiento:'22/04/2023', estadoorden: 'Pendiente'},
+    { ordenpedido: 200056, cliente: 'Carlos Alirio Rodríguez',  fecha: '04/05/2023',fechaprocesamiento:'23/06/2023', estadoorden: 'Pendiente'}
   ];
   res.render(templatePath, { ordenpedidos,estados});
 });
 
-
+//Asignación de remisiones
+router.post('/asigancionremision', (req, res) => {
+  const templatePath = req.body.template;
+  const remisones = [
+    { remision: 200056, cantidades: 56,proveedor:'Condumex',  fecha: '22/02/2023', estado: 'Pendiente'},
+    { remision: 200055, cantidades: 38,proveedor:'Kubiec',  fecha: '22/02/2023', estado: 'Pendiente'},
+    { remision: 200089, cantidades: 30,proveedor:'Centelsa',  fecha: '22/02/2023', estado: 'Pendiente'},
+    { remision: 200090, cantidades: 50,proveedor:'Nacobre',  fecha: '22/02/2023', estado: 'Pendiente'}
+  ];
+  res.render(templatePath, { remisones});
+});
 
 
 module.exports = router;

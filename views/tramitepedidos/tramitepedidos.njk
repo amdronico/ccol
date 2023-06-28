@@ -3,7 +3,8 @@
     <tr>
       <th>Orden Pedido</th>
       <th>Cliente</th>
-      <th>Fecha</th>
+      <th>Fecha de Solicitud</th>
+      <th>Fecha de Procesamiento</th>
       <th>Estado de Orden</th>
     </tr>
   </thead>
@@ -12,7 +13,8 @@
       <tr>
         <td>{{ ordenpedido.ordenpedido }}</td>
         <td>{{ ordenpedido.cliente }}</td>
-        <td>{{ ordenpedido.fecha }}</td>
+        <td>{{ ordenpedido.fecha }}</td>  
+        <td>{{ ordenpedido.fechaprocesamiento }}</td> 
         <td>
           <select class="form-control estadoPedido" data-pedido-id="{{ ordenpedido.ordenpedido }}">
             {% for estado in estados %}
