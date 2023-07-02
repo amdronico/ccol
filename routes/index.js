@@ -38,7 +38,7 @@ router.get('/dashboard', async (req, res) => {
       { image: '/assets/images/abastecimiento.png', title: 'Abastecimiento', template: 'cards/cards.njk', route: '/abastecimiento' },
       { image: '/assets/images/cortesproducto.png', title: 'Cortes de producto', template: 'cards/cards.njk', route: '/cortesproducto' },
       { image: '/assets/images/asignacionremisiones.png', title: 'Asignación de remisiones', template: 'asignacionremision/asignacionremision.njk', route: '/asigancionremision' },
-      { image: '/assets/images/montacargas.png', title: 'Montacargas', template: 'montacargas.njk', route: '/montacargas' },
+      { image: '/assets/images/montacargas.png', title: 'Montacargas', template: 'cards/cards.njk', route: '/montacargas' },
       { image: '/assets/images/tramitepedidos.png', title: 'Trámite de pedidos', template: 'tramitepedidos/tramitepedidos.njk', route: '/tramitepedidos' },
       { image: '/assets/images/embalaje.png', title: 'Embalaje', template: 'embalaje.njk', route: '/embalaje' },
       { image: '/assets/images/liquidacion.png', title: 'Liquidación', template: 'liquidacion.njk', route: '/liquidacion' },
@@ -362,6 +362,29 @@ router.post('/detalleremision', (req, res) => {
   ]
 
   res.render(templatePath, { encabezado,auxiliares,listaauxiliares,remisionId});
+});
+
+//Montacargas
+router.post('/montacargas', (req, res) => {
+  const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
+  //Renderizar plantilla
+  const cards = [
+    { image: '/assets/images/abastecimiento/reubicacionproducto.png', title: 'Reubicación de productos', template: 'reubicacionproducto.njk', route: '/reubicacionproducto' },
+    { image: '/assets/images/cortesproducto/listarcortes.png', title: 'Listar Remisiones', template: 'montacargas/listarremisiones.njk', route: '/listarremisiones' }
+  ];
+  // Luego, envía el HTML renderizado al cliente como respuesta
+  res.render(templatePath, { cards });
+});
+//Lista de remisiones
+router.post('/listarremisiones', (req, res) => {
+  const templatePath = req.body.template;
+  const remisones = [
+    { remision: 200056, cantidades: 56,proveedor:'Condumex',  fecha: '22/02/2023', estado: 'Pendiente'},
+    { remision: 200055, cantidades: 38,proveedor:'Kubiec',  fecha: '22/02/2023', estado: 'Pendiente'},
+    { remision: 200089, cantidades: 30,proveedor:'Centelsa',  fecha: '22/02/2023', estado: 'Pendiente'},
+    { remision: 200090, cantidades: 50,proveedor:'Nacobre',  fecha: '22/02/2023', estado: 'Pendiente'}
+  ];
+  res.render(templatePath, { remisones});
 });
 
 module.exports = router;
