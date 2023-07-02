@@ -1,0 +1,116 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content modal-lg">
+    <div class="modal-header">
+      <h5 class="modal-title text-center mx-auto">Detalle de la Remisión {{ remisionId }} </h5>
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary cancelarBtn">Cerrar</button>
+      </div>
+    </div>
+      <table id="tablaDetalleRemision" class="table table-striped" style="width:100%">
+        <thead>
+          <tr>
+            {% for columna in encabezado %}
+              <th>{{ columna }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for auxiliar in auxiliares %}
+          <tr>
+            <td>{{ auxiliar.tramite }}</td>
+            <td>{{ auxiliar.alistamiento }}</td>
+            <td>{{ auxiliar.corte }}</td>
+            <td>{{ auxiliar.liquidacion }}</td>
+            <td>{{ auxiliar.embalaje }}</td>
+            <td>{{ auxiliar.envio }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    <div class="modal-body">
+      <table id="AuxiliaresRemision" class="table table-striped" style="width:100%">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Tareas Asignadas</th>
+            <th>Asignar a:</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for listaauxiliar in listaauxiliares %}
+          <tr>
+            <td>{{ listaauxiliar.usuario }}</td>
+            <td id="nombre">{{ listaauxiliar.nombre }}</td>
+            <td>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: {{ listaauxiliar.avance }}%" aria-valuenow="{{ listaauxiliar.avance }}" aria-valuemin="0" aria-valuemax="100">{{ listaauxiliar.avance }}%</div>
+              </div>
+            </td>
+            <td>
+              <select class="form-select asignacion-select" name="asignacion">
+                {% for columna in encabezado %}
+                  <option value="{{ columna }}">{{ columna }}</option>
+                {% endfor %}
+              </select>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var tablaEtiquetas = $('#AuxiliaresRemision').DataTable({
+      language: {
+        url: "/js/dataTables.Spanish.json"
+      },
+      pageLength: 6,
+      scrollY: '250px',
+      scrollCollapse: true,
+      paging: true,
+      responsive: true
+    });
+      // Manejar el evento de cambio de selección del dropdown para asignar una tarea
+    $('.asignacion-select').change(function() {
+      // Obtener el valor seleccionado de la lista desplegable
+      var asignacion = $(this).val();
+       // Obtener el valor de la celda "Nombre" de la fila actual
+      var nombre = $(this).closest('tr').find('#nombre').text();
+      // Mostrar confirmación con iziToast
+      iziToast.question({
+        timeout: false,
+        close: false,
+        overlay: true,
+        displayMode: 'once',
+        id: 'question',
+        zindex: 99999999,
+        title: 'Confirmación',
+        message: '¿Asignar tarea ' + asignacion + ' a ' + nombre + '?',
+        position: 'center',
+        progressBarColor: '#57b846',
+        buttons: [
+          ['<button>Si</button>', function(instance, toast) {
+            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+            // Código para realizar la asignación de la tarea
+
+            // Mostrar mensaje de éxito con iziToast
+            iziToast.success({
+              title: 'Aviso',
+              message: 'Asignación realizada correctamente',
+              position: 'topCenter',
+              progressBarColor: '#57b846'
+            });
+          },true],
+            ['<button>No</button>', function(instance, toast) {
+            instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+          }]
+        ]
+      });
+    });
+  });
+</script>

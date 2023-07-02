@@ -47,9 +47,9 @@ $(document).ready(function() {
 $('#tablaRemisiones tbody').on('click', 'i.view-icon', function() {
   var $row = $(this).closest('tr'); // Obtener la fila más cercana al icono de visualización
   var remisionId = $(this).data('remision');
-  var template = 'abastecimiento/detalleremision.njk';
+  var template = 'asignacionremision/detalleremision.njk';
   $.ajax({
-    url: '/detalleorden',
+    url: '/detalleremision',
     type: 'POST',
     data: { remisionId: remisionId, template: template },
     success: function(response) {

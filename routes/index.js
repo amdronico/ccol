@@ -37,7 +37,7 @@ router.get('/dashboard', async (req, res) => {
       { image: '/assets/images/admin_users.png', title: 'Gestión de usuarios', template: 'adminuser/adminuser.njk', route: '/adminuser' },
       { image: '/assets/images/abastecimiento.png', title: 'Abastecimiento', template: 'cards/cards.njk', route: '/abastecimiento' },
       { image: '/assets/images/cortesproducto.png', title: 'Cortes de producto', template: 'cards/cards.njk', route: '/cortesproducto' },
-      { image: '/assets/images/asignacionremisiones.png', title: 'Asignación de remisiones', template: 'asigancionremision/asigancionremision.njk', route: '/asigancionremision' },
+      { image: '/assets/images/asignacionremisiones.png', title: 'Asignación de remisiones', template: 'asignacionremision/asignacionremision.njk', route: '/asigancionremision' },
       { image: '/assets/images/montacargas.png', title: 'Montacargas', template: 'montacargas.njk', route: '/montacargas' },
       { image: '/assets/images/tramitepedidos.png', title: 'Trámite de pedidos', template: 'tramitepedidos/tramitepedidos.njk', route: '/tramitepedidos' },
       { image: '/assets/images/embalaje.png', title: 'Embalaje', template: 'embalaje.njk', route: '/embalaje' },
@@ -332,7 +332,7 @@ router.post('/tramitepedidos', (req, res) => {
   res.render(templatePath, { ordenpedidos,estados});
 });
 
-//Asignación de remisiones
+//Lista de remisiones
 router.post('/asigancionremision', (req, res) => {
   const templatePath = req.body.template;
   const remisones = [
@@ -343,6 +343,25 @@ router.post('/asigancionremision', (req, res) => {
   ];
   res.render(templatePath, { remisones});
 });
+ //Detalle remisión
+router.post('/detalleremision', (req, res) => {
+  const templatePath = req.body.template;
+  const remisionId = req.body.remisionId;
+  const encabezado = ['Trámite', 'Alistamiento', 'Corte', 'Liquidación', 'Embalaje', 'Envío'];
+  const auxiliares = [
+    {tramite: 'Juan Pérez [jperez]', alistamiento: 'María López [mlopez]', corte: 'Pedro Rodríguez [prodriguez]', liquidacion: 'Ana García [agarcia]',
+    embalaje: 'Luisa Martínez [lmartinez]', envio: 'Roberto Sánchez [rzanchez]'}
+  ];
+  const listaauxiliares =[
+    {usuario: 'cmartinez', nombre: 'Carlos Andrés Martinez', avance: 50, asignacion: ''},
+    {usuario: 'lgonzalez', nombre: 'Laura González', avance: 50, asignacion: ''},
+    {usuario: 'alopez', nombre: 'Ana López', avance: 80, asignacion: ''},
+    {usuario: 'cmorales', nombre: 'Carolina Morales', avance: 30, asignacion: ''},
+    {usuario: 'esanchez', nombre: 'Eduardo Sánchez', avance: 78, asignacion: ''},
+    {usuario: 'gcastro', nombre: 'Gabriela Castro', avance: 90, asignacion: ''}
+  ]
 
+  res.render(templatePath, { encabezado,auxiliares,listaauxiliares,remisionId});
+});
 
 module.exports = router;
