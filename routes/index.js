@@ -40,7 +40,7 @@ router.get('/dashboard', async (req, res) => {
       { image: '/assets/images/asignacionremisiones.png', title: 'Asignación de remisiones', template: 'asignacionremision/asignacionremision.njk', route: '/asigancionremision' },
       { image: '/assets/images/montacargas.png', title: 'Montacargas', template: 'cards/cards.njk', route: '/montacargas' },
       { image: '/assets/images/tramitepedidos.png', title: 'Trámite de pedidos', template: 'tramitepedidos/tramitepedidos.njk', route: '/tramitepedidos' },
-      { image: '/assets/images/embalaje.png', title: 'Embalaje', template: 'embalaje.njk', route: '/embalaje' },
+      { image: '/assets/images/embalaje.png', title: 'Embalaje', template: 'embalaje/listaclientes.njk', route: '/listaclientes' },
       { image: '/assets/images/liquidacion.png', title: 'Liquidación', template: 'liquidacion.njk', route: '/liquidacion' },
       { image: '/assets/images/estadisticas.png', title: 'Estadísticas', template: 'estadisticas.njk', route: '/estadisticas' }
     ];
@@ -292,6 +292,8 @@ router.post('/detalleestiba', (req, res) => {
 });
 
 
+
+
 //Cortes de producto
 router.post('/cortesproducto', (req, res) => {
   const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
@@ -319,6 +321,9 @@ router.post('/listarcortes', (req, res) => {
   res.render(templatePath, { cortes,estados});
 });
 
+
+
+
 //Trámite de pedidos
 router.post('/tramitepedidos', (req, res) => {
   const templatePath = req.body.template;
@@ -331,7 +336,6 @@ router.post('/tramitepedidos', (req, res) => {
   ];
   res.render(templatePath, { ordenpedidos,estados});
 });
-
 //Lista de remisiones
 router.post('/asigancionremision', (req, res) => {
   const templatePath = req.body.template;
@@ -364,6 +368,9 @@ router.post('/detalleremision', (req, res) => {
   res.render(templatePath, { encabezado,auxiliares,listaauxiliares,remisionId});
 });
 
+
+
+
 //Montacargas
 router.post('/montacargas', (req, res) => {
   const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
@@ -385,6 +392,59 @@ router.post('/listarremisiones', (req, res) => {
     { remision: 200090, cantidades: 50,proveedor:'Nacobre',  fecha: '22/02/2023', estado: 'Pendiente'}
   ];
   res.render(templatePath, { remisones});
+});
+
+
+
+//Embalaje de producto
+//Mostrar lista con los  clientes y sus remisiones habilitadas.
+router.post('/listaclientes', (req, res) => {
+  const templatePath = req.body.template;
+  const clientes = [
+    { id: 12345, cliente: 'Mauricio Gil', direccion: 'Cra 27 # 4-60 Tunjuelito.', estado: 'pendiente' },
+    { id: 44567, cliente: 'Andrés Romero', direccion: 'Av 34 Trav. 34-67 Medellín.', estado: 'pendiente' },
+    { id: 23556, cliente: 'Simens SAS', direccion: 'Av Americas 34-70 Bogotá D.C.', estado: 'pendiente' }
+  ];
+
+  res.render(templatePath, { clientes});
+});
+//Listado remisones a las que se les va a generar una una etiqueta
+router.post('/embalajeetiquetaimprimir', (req, res) => {
+  const templatePath = req.body.template;
+  const cliente = req.body.cliente;
+  const nombre = req.body.nombre;
+  const remisiones = [
+    { numero: 200056, valor: 100, cliente: nombre, direccion: 'Dirección 1', cantidad: 5, estado: 'Aprobada' },
+    { numero: 200057, valor: 200, cliente: nombre, direccion: 'Dirección 2', cantidad: 3, estado: 'Anulada' },
+    { numero: 200080, valor: 150, cliente: nombre, direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200089, valor: 150, cliente: nombre, direccion: 'Dirección 20', cantidad: 7, estado: 'Anulada' },
+    { numero: 200068, valor: 150, cliente: nombre, direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 200034, valor: 150, cliente: nombre, direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 200055, valor: 150, cliente: nombre, direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200034, valor: 150, cliente: nombre, direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+    { numero: 200093, valor: 150, cliente: nombre, direccion: 'Dirección 20', cantidad: 7, estado: 'En elaboración' },
+    { numero: 200052, valor: 150, cliente: nombre, direccion: 'Dirección 20', cantidad: 7, estado: 'Aprobada' },
+  ];
+
+  res.render(templatePath, { remisiones });
+});
+//Detalle etiquetas a imprimir ENBALAJE
+router.post('/embalajedetallesetiquetas', (req, res) => {
+  //Ordenes recibidas para buscar y devolver los productos
+  const ordenes = req.body.ordenes; 
+  const templatePath = req.body.template;// Obtener la ruta de la plantilla enviada desde el cliente
+  const detalles= [
+    { referencia: 'CAB-001', descripcion: 'Cable de red Cat 6',unidad: 'metros', solicitada:'25',recibida:'0',pendiente:'20' },
+    { referencia: 'CAB-002', descripcion: 'Cable HDMI 2.0', unidad: 'metros', solicitada:'45',recibida:'0',pendiente:'4' },
+    { referencia: 'CAB-003', descripcion: 'Cable USB Tipo C',unidad: 'metros', solicitada:'2',recibida:'0',pendiente:'2'},
+    {referencia: 'CAB-004',descripcion: 'Cable de audio 3.5mm',unidad: 'metros', solicitada:'3',recibida:'0',pendiente:'3'},
+    {referencia: 'CAB-005',descripcion: 'Cable de alimentación PC',unidad: 'metros', solicitada:'67',recibida:'0',pendiente:'1'},
+    {referencia: 'CAB-006',descripcion: 'Cable VGA',unidad: 'metros', solicitada:'5',recibida:'0',pendiente:'5'},
+    {referencia: 'CAB-007',descripcion: 'Cable de carga para iPhone',unidad: 'metros', solicitada:'89',recibida:'0',pendiente:'80'},
+
+  ];
+  // Luego, envía el HTML renderizado al cliente como respuesta
+  res.render(templatePath, { detalles });
 });
 
 module.exports = router;
