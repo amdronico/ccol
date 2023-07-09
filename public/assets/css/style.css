@@ -8497,6 +8497,25 @@ a[data-toggle="collapse"] {
   }
 }
 
+.chart{
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .chart {
+    height: 300px;
+  }
+}
+.chartModification{
+  padding-top: 2%;
+}
+
+
+
+
 
 
 

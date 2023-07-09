@@ -41,8 +41,8 @@ router.get('/dashboard', async (req, res) => {
       { image: '/assets/images/montacargas.png', title: 'Montacargas', template: 'cards/cards.njk', route: '/montacargas' },
       { image: '/assets/images/tramitepedidos.png', title: 'Trámite de pedidos', template: 'tramitepedidos/tramitepedidos.njk', route: '/tramitepedidos' },
       { image: '/assets/images/embalaje.png', title: 'Embalaje', template: 'embalaje/listaclientes.njk', route: '/listaclientes' },
-      { image: '/assets/images/liquidacion.png', title: 'Liquidación', template: 'liquidacion.njk', route: '/liquidacion' },
-      { image: '/assets/images/estadisticas.png', title: 'Estadísticas', template: 'estadisticas.njk', route: '/estadisticas' }
+      { image: '/assets/images/liquidacion.png', title: 'Liquidación', template: 'liquidacion/liquidacion.njk', route: '/liquidacion' },
+      { image: '/assets/images/estadisticas.png', title: 'Estadísticas', template: 'estadisticas/estadisticas.njk', route: '/estadisticas' }
     ];
     // Generar el código QR
     const qrCodeDataURL = await qrcode.toDataURL(IdUser);
@@ -53,6 +53,8 @@ router.get('/dashboard', async (req, res) => {
     res.status(500).send('Error al generar el código QR');
   }
 });
+
+
 
 //admin user
 router.post('/adminuser', (req, res) => {
@@ -445,6 +447,44 @@ router.post('/embalajedetallesetiquetas', (req, res) => {
   ];
   // Luego, envía el HTML renderizado al cliente como respuesta
   res.render(templatePath, { detalles });
+});
+
+
+
+
+
+
+//Módulo de liquidación
+//Listado de remisiones en alistamiento
+router.post('/liquidacion', (req, res) => {
+  const templatePath = req.body.template;
+  const remisones = [
+    { remision: 200056, cliente:'ELECTRICOS DE COLOMBIA S.A.S.',nit:'890927932',contacto: 'VARGAS FANY',direccion:'CRA 51 # 12 Sur', ciudad:'MEDELLÍN',
+    telefono:'2857011', vendedor:'ALEJANDRO ARANGO', oc:'13102020-0', pv: 'PV-0085902 ',estado: 'Alistamiento'},
+    {remision: 200057,cliente: 'CONSTRUCTORA ACME S.A.',nit: '123456789',contacto: 'PEREZ JUAN',direccion: 'AV. PRINCIPAL # 123',ciudad: 'BOGOTÁ',
+    telefono: '1234567',vendedor: 'MARTINEZ LUIS',oc: '14102020-0',pv: 'PV-0085903',estado: 'Embalaje'},
+    { remision: 200058, cliente:'COMERCIAL XYZ LTDA.', nit:'987654321', contacto: 'LOPEZ MARIA', direccion:'CALLE SECUNDARIA # 456', ciudad:'CALI', 
+    telefono:'9876543', vendedor:'GOMEZ PEDRO', oc:'15102020-0', pv: 'PV-0085904', estado: 'Corte' },
+    { remision: 200059, cliente:'DISTRIBUIDORA ABC LTDA.', nit:'567890123', contacto: 'GONZALEZ LUISA', direccion:'AV. PRIMARIA # 789', ciudad:'BARRANQUILLA', 
+    telefono:'5678901', vendedor:'SANCHEZ CARLOS', oc:'16102020-0', pv: 'PV-0085905', estado: 'Liquidación' },
+    { remision: 200060, cliente:'FERRETERIA XYZ', nit:'456789012', contacto: 'RODRIGUEZ ANDRES', direccion:'CALLE PRINCIPAL # 567', ciudad:'CARTAGENA', 
+    telefono:'4567890', vendedor:'LOPEZ JUAN', oc:'17102020-0', pv: 'PV-0085906', estado: 'Envío' },
+    { remision: 200061, cliente:'INDUSTRIAS ACME', nit:'901234567', contacto: 'PEREZ MARIA', direccion:'CARRERA 10 # 1234', ciudad:'BOGOTÁ', 
+    telefono:'9012345', vendedor:'GOMEZ LUIS', oc:'18102020-0', pv: 'PV-0085907', estado: 'Alistamiento' },
+    { remision: 200062, cliente:'ELECTRICOS LTDA.', nit:'234567890', contacto: 'LOPEZ JUAN', direccion:'CALLE SECUNDARIA # 2345', ciudad:'CALI', 
+    telefono:'2345678', vendedor:'MARTINEZ MARIA', oc:'19102020-0', pv: 'PV-0085908', estado: 'Embalaje' }
+
+  ];
+  res.render(templatePath, { remisones});
+});
+
+
+
+//Módulo de estadisticas
+router.post('/estadisticas', (req, res) => {
+  const templatePath = req.body.template;
+
+  res.render(templatePath);
 });
 
 module.exports = router;

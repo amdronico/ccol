@@ -1,0 +1,112 @@
+
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="rotacion-tab" data-bs-toggle="tab" data-bs-target="#rotacion" type="button" role="tab" aria-controls="rotacion" aria-selected="true">Rotación de los productos</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="productividad-tab" data-bs-toggle="tab" data-bs-target="#productividad" type="button" role="tab" aria-controls="productividad" aria-selected="false">Productividad por usuarios</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="indicador-tab" data-bs-toggle="tab" data-bs-target="#indicador" type="button" role="tab" aria-controls="indicador" aria-selected="false">Indicador de cortes</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active chartModification" id="rotacion" role="tabpanel" aria-labelledby="rotacion-tab">
+      <div class="container">
+        <div id="chartRotacion" class="chart"></div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="productividad" role="tabpanel" aria-labelledby="productividad-tab">...
+    </div>
+    <div class="tab-pane fade chartModification" id="indicador" role="tabpanel" aria-labelledby="indicador-tab">
+      <div class="container">
+        <div id="chartIndicador" class="chart"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      // Datos de ejemplo
+      var rotationData = {
+        labels: ['A', 'B', 'C', 'D', 'E'],
+        series: [10, 20, 5, 15, 8]
+      };
+
+      var indicadorData = {
+        labels: ['Corte 1', 'Corte 2', 'Corte 3', 'Corte 4', 'Corte 5'],
+        series: [20, 10, 15, 12, 18]
+      };
+
+      // Configuración de la gráfica de rotación de productos
+      var rotationOptions = {
+        chart: {
+          type: 'bar',
+          height: 300,
+          toolbar: {
+            show: true,
+            exportMenu: {
+              csv: false,
+              svg: false,
+              png: true
+            }
+          }
+        },
+        series: [{
+          name: 'Rotación de productos',
+          data: rotationData.series
+        }],
+        xaxis: {
+          categories: rotationData.labels
+        },
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: '100%'
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }]
+      };
+
+      // Configuración de la gráfica de indicador de cortes
+      var indicadorOptions = {
+        chart: {
+          type: 'donut',
+          height: 300,
+          toolbar: {
+            show: true,
+            exportMenu: {
+              csv: false,
+              svg: false,
+              png: true
+            }
+          }
+        },
+        series: indicadorData.series,
+        labels: indicadorData.labels,
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: '100%'
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }]
+      };
+
+      // Crear gráficas
+      var rotationChart = new ApexCharts(document.querySelector('#chartRotacion'), rotationOptions);
+      rotationChart.render();
+
+      var indicadorChart = new ApexCharts(document.querySelector('#chartIndicador'), indicadorOptions);
+      indicadorChart.render();
+    });
+  </script>
+
