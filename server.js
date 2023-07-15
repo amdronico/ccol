@@ -3,11 +3,22 @@ const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const routes = require('./routes');
 const path = require('path');
+// Importar el módulo body-parser
+const bodyParser = require('body-parser');
 
 // Cargar variables de entorno desde el archivo .env
 dotenv.config();
 
 const app = express();
+// Configurar el middleware para el análisis del cuerpo de la solicitud
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+app.use(express.json({ limit: '50mb' }));
+
+
+// Configurar el middleware de body-parser
+app.use(bodyParser.urlencoded({ extended: true, parameterLimit: 500000, limit: '500mb' }));
+
+
 //Directorio principal
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));

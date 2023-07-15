@@ -1,5 +1,6 @@
 const express = require('express');
 const qrcode = require('qrcode');
+const jsQR = require('jsqr');
 const controller = require('../controllers/authController');
 const router = express.Router();
 //Ruta para renderizar el login de la aplicación
@@ -378,7 +379,7 @@ router.post('/montacargas', (req, res) => {
   const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
   //Renderizar plantilla
   const cards = [
-    { image: '/assets/images/abastecimiento/reubicacionproducto.png', title: 'Reubicación de productos', template: 'reubicacionproducto.njk', route: '/reubicacionproducto' },
+    { image: '/assets/images/abastecimiento/reubicacionproducto.png', title: 'Reubicación de productos', template: 'montacargas/reubicacionproducto.njk', route: '/reubicacionproducto' },
     { image: '/assets/images/cortesproducto/listarcortes.png', title: 'Listar Remisiones', template: 'montacargas/listarremisiones.njk', route: '/listarremisiones' }
   ];
   // Luego, envía el HTML renderizado al cliente como respuesta
@@ -394,6 +395,30 @@ router.post('/listarremisiones', (req, res) => {
     { remision: 200090, cantidades: 50,proveedor:'Nacobre',  fecha: '22/02/2023', estado: 'Pendiente'}
   ];
   res.render(templatePath, { remisones});
+});
+
+//Reubicacaión de productos
+router.post('/reubicacionproducto',(req, res)=>{
+  const templatePath = req.body.template;
+  res.render(templatePath);
+});
+
+
+// Ruta para recibir los datos del código QR
+router.post('/scanQRCode', (req, res) => {
+  // Leer el código QR y procesar los datos
+  const imageData = req.body.imageData;
+  const code = jsQR(imageData.data, imageData.width, imageData.height);
+  if (code) {
+    console.log('Código QR leído:', code.data);
+    // Aquí puedes realizar las acciones necesarias con el código QR leído
+
+    // Enviar una respuesta al cliente
+    res.send('Código QR leído: ' + code.data);
+  } else {
+    console.log('No se pudo leer ningún código QR.');
+    res.send('No se pudo leer ningún código QR.');
+  }
 });
 
 
