@@ -166,8 +166,7 @@ router.post('/etiquetadoproducto', (req, res) => {
   const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
   //Renderizar plantilla
   const cards = [
-    { image: '/assets/images/abastecimiento/etiquetadoproduto/imprimiretiqueta.png', title: 'Imprimir Etiqueta', template: 'abastecimiento/listaproveedores.njk', route: '/listaproveedores' },
-    //{ image: '/assets/images/abastecimiento/etiquetadoproduto/imprimiretiqueta.png', title: 'Imprimir Etiqueta', template: 'abastecimiento/etiquetaimprimir.njk', route: '/etiquetaimprimir' }
+    { image: '/assets/images/abastecimiento/etiquetadoproduto/imprimiretiqueta.png', title: 'Asignar e imprimir etiqueta', template: 'abastecimiento/listaproveedores.njk', route: '/listaproveedores' },
     { image: '/assets/images/abastecimiento/etiquetadoproduto/etiquetarproduto.png', title: 'Etiquetar producto', template: 'abastecimiento/etiquetaproducto.njk', route: '/etiquetaproducto' }
   ];
   // Luego, envía el HTML renderizado al cliente como respuesta
@@ -189,6 +188,7 @@ router.post('/listaproveedores', (req, res) => {
 //Listado ordenes de compra a las que se les va a generar una una etiqueta
 router.post('/etiquetaimprimir', (req, res) => {
   const templatePath = req.body.template;
+  //Datos del proveedor para hacer la consulta al backend
   const proveedor = req.body.proveedor;
   const ordenes = [
     { numero: 200056, valor: 100, proveedor: 'Centelsa', direccion: 'Dirección 1', cantidad: 5, estado: 'Aprobada' },
@@ -297,6 +297,7 @@ router.post('/detalleestiba', (req, res) => {
 
 
 
+
 //Cortes de producto
 router.post('/cortesproducto', (req, res) => {
   const templatePath = req.body.template; // Obtener la ruta de la plantilla enviada desde el cliente
@@ -323,6 +324,19 @@ router.post('/listarcortes', (req, res) => {
 
   res.render(templatePath, { cortes,estados});
 });
+//Realizar corte de producto
+
+//Listado de cortes realizados
+router.post('/cortarproducto', (req, res) => {
+  const templatePath = req.body.template;
+   //por el momento se muestra el historial de manera estático mientras se soluciona el lector de QR
+   const cortados = [
+    {carrete : 345678, usuario: 'fmarquez',fecha : '22/02/2023', inicial : '345.5', final : '340.5'}
+   ]
+  
+  res.render(templatePath, { cortados });
+});
+
 
 
 
