@@ -1,0 +1,44 @@
+<table id="listaCortar" class="table table-striped" style="width:100%">
+  <thead>
+    <tr>
+      <th>N° Carrete</th>
+      <th>Usuario</th>
+      <th>Fecha corte</th>
+      <th>Metraje inicial</th>
+      <th>Metraje cortado</th>
+      <th>Metraje final</th>
+      <th>Unidad de medida</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for cortado in cortados %}
+      <tr>
+        <td>{{ cortado.carrete }}</td>
+        <td>{{ cortado.usuario }}</td>
+        <td>{{ cortado.fecha }}</td>
+        <td>{{ cortado.inicial }}</td>
+        <td>{{ cortado.corte }}</td>
+        <td>{{ cortado.final }}</td>
+        <td>{{ cortado.unidad }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<script>
+  $(document).ready(function() {
+  var tablaOrdenes = $('#listaCortar').DataTable({
+    select: {
+      style: 'single'
+    },
+    language: {
+      url: "/js/dataTables.Spanish.json"
+    },
+    pageLength: 6,
+    scrollY: '250px',
+    scrollCollapse: true,
+    paging: true,
+    responsive: true
+  });
+});
+</script>
+

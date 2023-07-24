@@ -1,40 +1,70 @@
-<table id="listaCortar" class="table table-striped" style="width:100%">
+<table id="listaCarretes" class="table table-striped" style="width:100%">
   <thead>
     <tr>
       <th>N° Carrete</th>
-      <th>Usuario</th>
-      <th>Fecha corte</th>
-      <th>Metraje inicial</th>
-      <th>Metraje final</th>
+      <th>Fecha carrete</th>
+      <th>Total inicial</th>
+      <th>Total cortado</th>
+      <th>Disponible</th>
+      <th>Unidad de medida</th>
+      <th>Acciones</th> <!-- Nueva columna para el ícono del ojo -->
     </tr>
   </thead>
   <tbody>
-    {% for cortado in cortados %}
+    {% for carrete in carretes %}
       <tr>
-        <td>{{ cortado.carrete }}</td>
-        <td>{{ cortado.usuario }}</td>
-        <td>{{ cortado.fecha }}</td>
-        <td>{{ cortado.inicial }}</td>
-        <td>{{ cortado.final }}</td>
+        <td>{{ carrete.carrete }}</td>
+        <td>{{ carrete.fecha }}</td>
+        <td>{{ carrete.inicial }}</td>
+        <td>{{ carrete.totalcortado }}</td>
+        <td>{{ carrete.disponible }}</td>
+        <td>{{ carrete.unidad }}</td>
+        <td>
+          <i class="view-icon fa fa-eye" data-carrete="{{ carrete.carrete }}"></i> <!-- Ícono del ojo con clase 'view-icon' y atributo data-id -->
+        </td>
       </tr>
     {% endfor %}
   </tbody>
 </table>
+
 <script>
   $(document).ready(function() {
-  var tablaOrdenes = $('#listaCortar').DataTable({
-    select: {
-      style: 'single'
-    },
-    language: {
-      url: "/js/dataTables.Spanish.json"
-    },
-    pageLength: 6,
-    scrollY: '250px',
-    scrollCollapse: true,
-    paging: true,
-    responsive: true
+    var tablaOrdenes = $('#listaCarretes').DataTable({
+      select: {
+        style: 'single'
+      },
+      language: {
+        url: "/js/dataTables.Spanish.json"
+      },
+      pageLength: 6,
+      scrollY: '250px',
+      scrollCollapse: true,
+      paging: true,
+      responsive: true
+    });
+
+    // Agregar evento clic para las etiquetas <i> con clase "view-icon"
+    $('.view-icon').click(function() {
+      var carreteId = $(this).data('carrete'); // Obtener el ID del carrete desde el atributo data-id
+      console.log(carreteId);
+      // Enviar el ID del carrete al backend mediante AJAX
+      /*$.ajax({
+        url: '/ruta-del-backend',
+        type: 'POST', 
+        data: {
+          carreteId: carreteId
+        },
+        success: function(response) {
+          // Aquí puedes realizar acciones adicionales con la respuesta del backend
+          console.log(response);
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });*/
+    });
   });
-});
 </script>
+
+
 

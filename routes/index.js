@@ -326,16 +326,28 @@ router.post('/listarcortes', (req, res) => {
 });
 //Realizar corte de producto
 
-//Listado de cortes realizados
+//Listado de carretes para cortar
 router.post('/cortarproducto', (req, res) => {
   const templatePath = req.body.template;
    //por el momento se muestra el historial de manera estático mientras se soluciona el lector de QR
+   const carretes = [
+    {carrete : 345678, fecha : '22/02/2023', inicial : '345.5', totalcortado:'5', disponible : '340.5', unidad : 'metros'}
+   ]
+  
+  res.render(templatePath, { carretes });
+});
+
+//Listado de cortes realizados
+router.post('/historialcortes', (req, res) => {
+  const templatePath = req.body.template;
+   //por el momento se muestra el historial de manera estático mientras se soluciona el lector de QR
    const cortados = [
-    {carrete : 345678, usuario: 'fmarquez',fecha : '22/02/2023', inicial : '345.5', final : '340.5'}
+    {carrete : 345678, usuario: 'fmarquez',fecha : '22/02/2023', inicial : '345.5', corte:'5', final : '340.5', unidad : 'metros'}
    ]
   
   res.render(templatePath, { cortados });
 });
+
 
 
 
