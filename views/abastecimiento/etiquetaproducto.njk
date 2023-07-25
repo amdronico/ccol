@@ -4,6 +4,7 @@
       <th>Cód. Estiba</th>
       <th>UE:</th>
       <th>Proveedor</th>
+      <th>Reemprimir</th>
       <th>Ver</th>
     </tr>
   </thead>
@@ -13,6 +14,7 @@
         <td>{{ estiba.estiba }}</td>
         <td>{{ estiba.ue }}</td>
         <td>{{ estiba.proveedor }}</td>
+         <td><i class="fa-solid fa-print"  data-estiba="{{ estiba.estiba }}"></i></td> 
         <td><i class="view-icon fas fa-eye" data-estiba="{{ estiba.estiba }}"></i></td> 
       </tr>
     {% endfor %}
@@ -61,5 +63,46 @@
           }
         });
       });
+
+    // Agregar evento clic para las etiquetas <i> con clase "print-icon"
+    $('.fa-print').click(function() {
+      var estibaId = $(this).data('estiba'); // Obtener el ID de la estiba desde el atributo data-estiba
+
+      // Verificar si el valor del atributo data-estiba es válido
+      if (estibaId !== undefined && estibaId !== null && estibaId !== '') {
+        console.log('ID de la estiba seleccionada:', estibaId);
+
+        // Mostrar la confirmación de tipo utilizando iziToast
+        iziToast.question({
+          timeout: false,
+          close: false,
+          overlay: true,
+          displayMode: 'once',
+          id: 'imprimirEtiqueta',
+          title: 'Reimprimir Etiqueta',
+          message: '¿Deseas reimprimir la etiqueta de la estiba '+estibaId+'?',
+          position: 'center',
+          buttons: [
+            ['<button><b>Sí</b></button>', function(instance, toast) {
+              instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+              // Lógica para imprimir la etiqueta"
+              iziToast.success({
+              title: 'Notificación',
+              message: 'La etiqueta se ha enviado a reimprimir',
+              position: 'topCenter',
+              progressBarColor: '#57b846'
+            });
+            }],
+            ['<button>Cancelar</button>', function(instance, toast) {
+              instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+            }]
+          ]
+        });
+
+
+      } else {
+        console.log('El ID de la estiba no es válido.');
+      }
+    });
     });
   </script>
