@@ -2,15 +2,102 @@
   <div class="modal-content modal-lg">
     <div class="modal-header">
       <h5 class="modal-title text-center mx-auto">Detalle del corte a realizar</h5>
-      <div class="form-actions">
-        <button type="button" class="btn btn-primary crearEtiqueta">Crear Etiqueta</button>
-        <button type="button" class="btn btn-secondary cancelarBtn">Cancelar</button>
-      </div>
+
     </div>
     <div class="modal-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <table id="cortes" class="table table-striped" style="width:100%">
+            <thead>
+              <tr>
+                <th>Usuario</th>
+                <th>Inicial</th>
+                <th>Cortado</th>
+                <th>Disponible</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for corte in cortes %}
+                  <tr>
+                    <td>{{ corte.usuario }}</td>
+                    <td>{{ corte.inicial }}</td>
+                    <td>{{ corte.cortado }}</td>
+                    <td>{{ corte.disponible }}</td>
+                  </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-6">
+          <div class="input-group mb-3">
+            <span class="input-group-text">Total Carrete:</span>
+            <input type="number" aria-label="Total Carrete" class="form-control" value="{{carrete}}" disabled>
+            <span class="input-group-text">Total cortado:</span>
+            <input type="number" aria-label="Total cortado" class="form-control" value="{{cortados}}" disabled>
+            <span class="input-group-text">Total cortes:</span>
+            <input type="number" aria-label="Total cortes" class="form-control" value="{{totalcorte}}" disabled>
+          </div>
 
+          <div class="input-group mb-3">
+            <span class="input-group-text">Disponible:</span>
+            <input type="number" aria-label="Disponible" class="form-control" value="{{disponible}}" disabled>
+            <span class="input-group-text">Nuevo corte:</span>
+            <input type="number" aria-label="Nuevo corte" class="form-control">
+          </div>
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn btn-primary mr-2 guardarCorte">Realizar Corte</button>
+          <button type="button" class="btn btn-secondary cancelarBtn">Cancelar</button>
+        </div> 
+        </div>
+      </div>
+      
     </div>
   </div>
 </div>
-<script>
-</script>
+      <script>
+        $(document).ready(function() {
+          var tablaOrdenes = $('#cortes').DataTable({
+            language: {
+              url: "/js/dataTables.Spanish.json"
+            },
+            pageLength: 5,
+            scrollY: '250px',
+            scrollCollapse: true,
+            paging: true,
+            responsive: true
+          });
+              // Escuchar el evento de clic en el botón "Guardar corte"
+          $('.guardarCorte').on('click', function() {
+              iziToast.question({
+              timeout: false,
+              close: false,
+              overlay: true,
+              displayMode: 'once',
+              id: 'question',
+              zindex: 99999999,
+              title: 'Confirmación',
+              message: '¿Está seguro de generar corte?',
+              position: 'center',
+              buttons: [
+                ['<button><b>Sí</b></button>', function(instance, toast) {
+                  instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                  iziToast.success({
+                      title: 'Aviso',
+                      message: 'El corte se generó correctamente',
+                      position: 'topCenter'
+                    });
+                  // Cerrar la ventana modal
+                   $('.lightbox').hide();
+
+                  // Realizar las acciones necesarias para enviar el corte
+                  // ...
+                }, true],
+                ['<button>No</button>', function(instance, toast) {
+                  instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                }]
+              ]
+            });
+           });
+        });
+      </script>
+

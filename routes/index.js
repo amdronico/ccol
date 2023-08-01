@@ -351,9 +351,17 @@ router.post('/historialcortes', (req, res) => {
 //Realizar el corte
 router.post('/detallecorte', (req, res) => {
   const templatePath = req.body.template;
-  
-  
-  res.render(templatePath);
+  const cortes = [
+    { usuario: 'djota', inicial: 45, cortado: 5, disponible: 40 },
+    { usuario: 'djota', inicial: 40, cortado: 5, disponible: 35 }
+  ];
+
+  const carrete = 45;
+  const cortados = 10;
+  const totalcorte = 2;
+  const disponible = 35;
+
+  res.render(templatePath, { cortes, carrete, cortados, totalcorte, disponible });
 });
 
 
