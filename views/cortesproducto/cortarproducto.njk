@@ -7,7 +7,7 @@
       <th>Total cortado</th>
       <th>Disponible</th>
       <th>Unidad de medida</th>
-      <th>Acciones</th> <!-- Nueva columna para el ícono del ojo -->
+      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -26,7 +26,9 @@
     {% endfor %}
   </tbody>
 </table>
-
+  <div id="editLightbox" class="lightbox">
+    <div class="lightbox-content ordencompra" id="lightboxContent"></div>
+  </div>
 <script>
   $(document).ready(function() {
     var tablaOrdenes = $('#listaCarretes').DataTable({
@@ -47,21 +49,19 @@
     $('.view-icon').click(function() {
       var carreteId = $(this).data('carrete'); // Obtener el ID del carrete desde el atributo data-id
       console.log(carreteId);
-      // Enviar el ID del carrete al backend mediante AJAX
-      /*$.ajax({
-        url: '/ruta-del-backend',
-        type: 'POST', 
-        data: {
-          carreteId: carreteId
-        },
-        success: function(response) {
-          // Aquí puedes realizar acciones adicionales con la respuesta del backend
-          console.log(response);
-        },
-        error: function(error) {
-          console.log(error);
-        }
-      });*/
+     var template = 'cortesproducto/detallecorte.njk';
+        $.ajax({
+          url: '/detallecorte',
+          type: 'POST',
+          data: { carreteId: carreteId, template: template },
+          success: function(response) {
+            $('#lightboxContent').html(response);
+            $('#editLightbox').fadeIn();
+          },
+          error: function(error) {
+            console.error('Error al obtener el detalle de la estiba:', error);
+          }
+        });
     });
   });
 </script>

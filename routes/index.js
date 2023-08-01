@@ -348,6 +348,15 @@ router.post('/historialcortes', (req, res) => {
   res.render(templatePath, { cortados });
 });
 
+//Realizar el corte
+router.post('/detallecorte', (req, res) => {
+  const templatePath = req.body.template;
+  
+  
+  res.render(templatePath);
+});
+
+
 
 
 
