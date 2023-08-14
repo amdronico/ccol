@@ -555,4 +555,33 @@ router.post('/estadisticas', (req, res) => {
   res.render(templatePath);
 });
 
+//Módulo estantería
+router.post('/estanteria', (req, res) => {
+  const templatePath = req.body.template;
+  //Renderizar plantilla
+  const cards = [
+    { image: '/assets/images/estanteria.png', title: 'Generar Estantería', template: 'estanteria/listaestanteria.njk', route: '/listarestanteria' }
+  ];
+  // Luego, envía el HTML renderizado al cliente como respuesta
+  res.render(templatePath, { cards });
+});
+//Lista las estanterias  creadas
+router.post ('/listarestanteria',(req,res)=>{
+ const templatePath = req.body.template;
+ const estanterias = [
+  { codigo: 'C3-001', piso:'3',tamanio:'3X3',estado: 'Parcial'},
+  { codigo: 'C2-004', piso:'2',tamanio:'5X5',estado: 'Completo'}
+];
+res.render(templatePath, { estanterias});
+});
+//Ligthbox Para solicitud de creación
+router.post ('/crearestanteria',(req,res)=>{
+  const templatePath = req.body.template;
+  const estanterias = [
+   { codigo: 'C3-001', piso:'3',tamanio:'3X3',estado: 'Parcial'},
+   { codigo: 'C2-004', piso:'2',tamanio:'5X5',estado: 'Completo'}
+ ];
+ res.render(templatePath);
+ });
+
 module.exports = router;

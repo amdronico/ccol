@@ -42,6 +42,11 @@ $(document).ready(function() {
     if (route==='/ordendecompra'){
       var title = 'Orden de Compra ' + $(this).find('.text-container').data('title');
     }
+   if (route==='/listarestanteria'){
+      var button = '<span class="icon"><i class="fa-solid fa-table fa-2xl"></i></span>';
+      //Quitar clase adduser
+      $('#button').removeClass('adduser');
+    }
     // Realizar una llamada AJAX al servidor Express para renderizar la plantilla
     $.ajax({
       url: route,

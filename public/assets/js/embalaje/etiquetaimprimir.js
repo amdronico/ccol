@@ -66,7 +66,7 @@ $(document).ready(function() {
               // Manejar la respuesta del servidor en caso de éxito
                     $('#lightboxContent').html(response);
                     $('#editLightbox').fadeIn();
-                    //se coloca la clase remision de compra para mostrar el lightBox rectangular
+                    //se coloca la clase ordencompra para mostrar el lightBox rectangular
                     $('#lightboxContent').addClass('ordencompra');
                     $('#button').removeClass('adduser');
 

@@ -1,0 +1,24 @@
+<table id="listarEstanterias" class="table table-striped" style="width:100%">
+  <thead>
+    <tr>
+      <th>Código Estantería</th>
+      <th>Número piso</th>
+      <th>Tamaño</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for estanteria in estanterias %}
+      <tr>
+        <td>{{ estanteria.codigo }}</td>
+        <td>{{ estanteria.piso }}</td>
+        <td>{{ estanteria.tamanio }}</td>
+        <td>{{ estanteria.estado }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+  <div id="editLightbox" class="lightbox">
+    <div class="lightbox-content ordencompra" id="lightboxContent"></div>
+  </div>
+<script src="/js/estanteria/listarestanteria.js"></script>
